@@ -1,8 +1,7 @@
-#include <SDL.h>
+#include <iostream>
 #include "Game.h"
 #include "Constants.h"
-#include <stdio.h>
-#include <iostream>
+#include <SDL.h>
 
 int main(int argc, char* args[])
 {

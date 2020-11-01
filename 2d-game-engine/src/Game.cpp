@@ -1,10 +1,12 @@
+#include <iostream>
+#include <glm.hpp>
 #include "Game.h"
 #include <SDL.h>
-#include <iostream>
 
 //Public
-Game::Game(int width, int height, bool fullScreen)
+Game::Game(int width, int height, bool fullScreen, Color bgColor)
 {
+    this->bgColor = bgColor;
     this->windowWidth = width;
     this->windowHeight = height;
     this->isFullScreen = fullScreen;
@@ -73,17 +75,34 @@ void Game::processInput()
     {
         this->isRunning = false;
     };
+
 };
+
+float x = 0, y = 0;
 
 void Game::update()
 {
-
+    x += 0.1f;
+    y += 0.1f;
 };
 
 void Game::render()
 {
-    SDL_SetRenderDrawColor(this->renderer, 100, 149, 237, 255);
+    SDL_SetRenderDrawColor(this->renderer, this->bgColor.r, this->bgColor.g, this->bgColor.b, this->bgColor.a);
     SDL_RenderClear(this->renderer);
+
+    {// Render Projectile Test
+        SDL_Rect projectile
+        {
+            (int)x,
+            (int)y,
+            10,
+            10
+        };
+        SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, 255);
+        SDL_RenderFillRect(renderer, &projectile);
+    }
+
     SDL_RenderPresent(this->renderer);
 };
 
@@ -96,7 +115,7 @@ void Game::initializeWindow()
         SDL_WINDOWPOS_CENTERED,
         this->windowWidth,
         this->windowHeight,
-        this->isFullScreen ? SDL_WINDOW_FULLSCREEN : 0
+        this->isFullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_MAXIMIZED
     );
 
     if (this->window == nullptr)

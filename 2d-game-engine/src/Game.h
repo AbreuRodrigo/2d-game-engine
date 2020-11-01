@@ -1,32 +1,34 @@
 #pragma once
 
 #include <SDL.h>
+#include "Color.h"
 
 class Game
 {
 public:
-    Game(int width, int height, bool fullScreen);
+    Game(int width, int height, bool fullScreen, Color bgColor);
     ~Game();
 
 protected:
+    Color bgColor = Color::black;
     int windowWidth = 0;
     int windowHeight = 0;
     bool isRunning = false;
     bool isFullScreen = false;
 
-    //properties    
+    //Components
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
 
-    //functions
+    //Methods
     void initialize();
-    void destroy();
     void start();
     void processInput();
     void update();
     void render();
+    void destroy();
 
-    //system
+    //System
     void initializeWindow();
     void initializeRenderer();
 };

@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Color.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Color.h" />
     <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Game.h" />
   </ItemGroup>
@@ -86,7 +88,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDL2-2.0.12\include;$(IncludePath)</IncludePath>
+    <IncludePath>F:\Projects\2d-game-engine\2d-game-engine\lib\glm;C:\SDL2-2.0.12\include;F:\Projects\2d-game-engine\2d-game-engine\lib\lua;$(IncludePath)</IncludePath>
     <LibraryPath>C:\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

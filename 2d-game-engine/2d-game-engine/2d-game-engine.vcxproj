@@ -32,6 +32,8 @@
     <ClInclude Include="..\src\Entity.h" />
     <ClInclude Include="..\src\EntityManager.h" />
     <ClInclude Include="..\src\Game.h" />
+    <ClInclude Include="..\src\RendererComponent.h" />
+    <ClInclude Include="..\src\SpriteRendererComponent.h" />
     <ClInclude Include="..\src\TransformComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

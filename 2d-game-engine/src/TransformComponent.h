@@ -1,50 +1,45 @@
 #pragma once
 
-#include <SDL.h>
 #include <glm.hpp>
-#include "EntityManager.h"
 #include "Component.h"
-#include "Game.h"
 
 class TransformComponent : public Component
 {
 public:
     glm::vec2 position;
     glm::vec2 velocity;
-    int width;
-    int height;
-    int scale;
+    glm::vec2 scale;
 
-    TransformComponent(int posX, int posY, int velX, int velY, int w, int h, int s)
-    {
-        position = glm::vec2(posX, posY);
-        velocity = glm::vec2(velX, velY);
-        width = w;
-        height = h;
-        scale = s;
+    TransformComponent() : position(glm::vec2(0.f, 0.f)), velocity(glm::vec2(0.f, 0.f)), scale(glm::vec2(1.f, 1.f))
+    {        
     };
 
-    void initialize() override {
+    TransformComponent(float xPosition, float yPosition) : velocity(glm::vec2(0.f, 0.f)), scale(glm::vec2(1.f, 1.f))
+    {
+        position = glm::vec2(xPosition, yPosition);
+    };
 
+    TransformComponent(float xPosition, float yPosition, float xVelocity, float yVelocity) : scale(glm::vec2(1, 1))
+    {
+        position = glm::vec2(xPosition, yPosition);
+        velocity = glm::vec2(xVelocity, yVelocity);
+    };
+
+    TransformComponent(float xPosition, float yPosition, float xVelocity, float yVelocity, float xScale, float yScale)
+    {
+        position = glm::vec2(xPosition, yPosition);
+        velocity = glm::vec2(xVelocity, yVelocity);        
+        scale = glm::vec2(xScale, yScale);
+    };
+
+    void initialize() override 
+    {
     };
 
     void update(float deltaTime) override
     {
         position.x += velocity.x * deltaTime;
         position.y += velocity.y * deltaTime;
-    };
-
-    void render() override
-    {
-        SDL_Rect transformRectangle = {
-            (int)position.x,
-            (int)position.y,
-            width,
-            height
-        };
-
-        SDL_SetRenderDrawColor(Game::getRenderer(), Color::white.r, Color::white.g, Color::white.b, Color::white.a);
-        SDL_RenderFillRect(Game::getRenderer(), &transformRectangle);
     };
 };
 

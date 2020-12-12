@@ -3,11 +3,15 @@
 Entity::Entity(EntityManager& entityManager) : entityManager(entityManager)
 {
     this->active = true;
+    this->transform = nullptr;
+    this->renderer = nullptr;
 };
 
 Entity::Entity(EntityManager& entityManager, std::string name) : entityManager(entityManager), name(name)
 {
     this->active = true;
+    this->transform = nullptr;
+    this->renderer = nullptr;
 };
 
 void Entity::update(float deltaTime)
@@ -20,9 +24,9 @@ void Entity::update(float deltaTime)
 
 void Entity::render()
 {
-    for (auto& component : components)
+    if (renderer != nullptr)
     {
-        component->render();
+        renderer->render();
     }
 };
 

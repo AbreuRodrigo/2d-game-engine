@@ -2,8 +2,11 @@
 
 #include <vector>
 #include <string>
+#include <type_traits>
 #include "EntityManager.h"
 #include "Component.h"
+#include "TransformComponent.h"
+#include "RendererComponent.h"
 
 class EntityManager;
 
@@ -19,6 +22,10 @@ public:
 
     Entity(EntityManager& entityManager);
     Entity(EntityManager& entityManager, std::string name);
+
+    TransformComponent* transform;
+    RendererComponent* renderer;
+
     void update(float deltaTime);
     void render();
     void destroy();
@@ -31,6 +38,17 @@ public:
         component->parent = this;
         components.emplace_back(component);
         component->initialize();
+
+        if (transform == nullptr)
+        {
+            transform = dynamic_cast<TransformComponent*>(component);
+        }
+
+        if (renderer == nullptr)
+        {
+            renderer = dynamic_cast<RendererComponent*>(component);
+        }        
+
         return *component;
     };
 };

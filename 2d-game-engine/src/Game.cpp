@@ -3,8 +3,8 @@
 #include <SDL.h>
 #include "Game.h"
 #include "Constants.h"
-#include "EntityManager.h"
 #include "TransformComponent.h"
+#include "SpriteRendererComponent.h"
 
 //Static
 SDL_Renderer* Game::renderer;
@@ -45,7 +45,8 @@ Game::~Game()
 void Game::loadLevel(int levelNumber)
 {
     Entity& player = entityManager.addEntity("Player");
-    player.addComponent<TransformComponent>(0, 0, 10, 10, 35, 35, 1);
+    player.addComponent<TransformComponent>(this->windowWidth * 0.5f, this->windowHeight * 0.5f);
+    player.addComponent<SpriteRendererComponent>(35.f, 35.f);
 };
 
 void Game::initialize()
@@ -117,8 +118,7 @@ void Game::update()
             
     ticksLastFrame = SDL_GetTicks();
 
-    entityManager.update(deltaTime);
-    
+    entityManager.update(deltaTime);    
 };
 
 void Game::render()

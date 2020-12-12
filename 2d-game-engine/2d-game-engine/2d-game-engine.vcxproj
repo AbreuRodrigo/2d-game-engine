@@ -20,13 +20,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Color.cpp" />
+    <ClCompile Include="..\src\Entity.cpp" />
+    <ClCompile Include="..\src\EntityManager.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Color.h" />
+    <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\Constants.h" />
+    <ClInclude Include="..\src\Entity.h" />
+    <ClInclude Include="..\src\EntityManager.h" />
     <ClInclude Include="..\src\Game.h" />
+    <ClInclude Include="..\src\TransformComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

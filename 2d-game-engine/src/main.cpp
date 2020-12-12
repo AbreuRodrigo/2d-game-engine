@@ -6,6 +6,6 @@
 
 int main(int argc, char* args[])
 {
-    new Game(WINDOW_WIDTH, WINDOW_HEIGHT, true, Color::orange);
+    new Game(WINDOW_WIDTH, WINDOW_HEIGHT, Color::cornFlowerBlue, true);
     return EXIT_APPLICATION;
 }

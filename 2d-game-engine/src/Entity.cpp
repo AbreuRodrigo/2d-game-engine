@@ -1,13 +1,13 @@
 #include "Entity.h"
 
-Entity::Entity(EntityManager& entityManager) : entityManager(entityManager)
+Entity::Entity(EntitySystem& entitySystem) : entitySystem(entitySystem)
 {
     this->active = true;
     this->transform = nullptr;
     this->renderer = nullptr;
 };
 
-Entity::Entity(EntityManager& entityManager, std::string name) : entityManager(entityManager), name(name)
+Entity::Entity(EntitySystem& entitySystem, std::string name) : entitySystem(entitySystem), name(name)
 {
     this->active = true;
     this->transform = nullptr;
@@ -38,4 +38,12 @@ void Entity::destroy()
 bool Entity::isActive() const
 {
     return this->active;
+};
+
+void Entity::listAllComponents() const
+{
+    for (auto component : componentTypes)
+    {
+        std::cout << "Component<" << component.first->name() << ">" << std::endl;
+    }
 };

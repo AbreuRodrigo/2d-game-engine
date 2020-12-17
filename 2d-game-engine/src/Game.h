@@ -2,7 +2,10 @@
 
 #include <SDL.h>
 #include "Color.h"
-#include "EntityManager.h"
+#include "AssetSystem.h"
+#include "EntitySystem.h"
+
+class AssetSystem;
 
 class Game
 {
@@ -10,7 +13,8 @@ public:
     Game(int width, int height, Color bgColor, bool fullScreen);
     Game(int width, int height, Color bgColor, const char* screenTitle);
     ~Game();
-        
+
+    static AssetSystem* getAssetSystem();
     static SDL_Renderer* getRenderer();
 
 protected:
@@ -29,8 +33,8 @@ protected:
     int ticksLastFrame = 0;
 
     //Components    
-    EntityManager entityManager;
     SDL_Window* window;
+    static AssetSystem* assetSystem;
     static SDL_Renderer* renderer;
     
     //Engine Methods

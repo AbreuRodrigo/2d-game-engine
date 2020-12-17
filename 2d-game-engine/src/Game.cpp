@@ -1,12 +1,21 @@
 #include <iostream>
 #include <glm.hpp>
 #include <SDL.h>
-#include "Game.h"
+#include "AssetSystem.h"
 #include "Constants.h"
-#include "TransformComponent.h"
+#include "Game.h"
 #include "SpriteRendererComponent.h"
+#include "TransformComponent.h"
 
 //Static
+EntitySystem entitySystem;
+
+AssetSystem* Game::assetSystem = new AssetSystem(&entitySystem);
+AssetSystem* Game::getAssetSystem()
+{
+    return assetSystem;
+};
+
 SDL_Renderer* Game::renderer;
 SDL_Renderer* Game::getRenderer()
 {
@@ -39,14 +48,20 @@ Game::Game(int width, int height, Color bgColor, const char* screenTitle)
 
 Game::~Game()
 {
+    assetSystem->clearData();
+    delete assetSystem;
+    delete renderer;
 };
 
 //Engine Methods
 void Game::loadLevel(int levelNumber)
 {
-    Entity& player = entityManager.addEntity("Player");
-    player.addComponent<TransformComponent>(this->windowWidth * 0.5f, this->windowHeight * 0.5f);
-    player.addComponent<SpriteRendererComponent>(35.f, 35.f);
+    std::string texturefilePath = "../assets/images/tank-big-right.png";
+    assetSystem->addTexture("tankImage", texturefilePath.c_str());
+
+    Entity& player = entitySystem.addEntity("Tank");
+    player.addComponent<TransformComponent>(this->windowWidth * 0.5f, this->windowHeight * 0.5f, 20, 0, 2, 2);
+    player.addComponent<SpriteRendererComponent>("tankImage", Color(255, 127, 0, 1));
 };
 
 void Game::initialize()
@@ -118,7 +133,7 @@ void Game::update()
             
     ticksLastFrame = SDL_GetTicks();
 
-    entityManager.update(deltaTime);    
+    entitySystem.update(deltaTime);    
 };
 
 void Game::render()
@@ -126,12 +141,12 @@ void Game::render()
     SDL_SetRenderDrawColor(this->renderer, this->bgColor.r, this->bgColor.g, this->bgColor.b, this->bgColor.a);
     SDL_RenderClear(this->renderer);
 
-    if (entityManager.hasNoEntities())
+    if (entitySystem.hasNoEntities())
     {
         return;
     }
     
-    entityManager.render();
+    entitySystem.render();
 
     SDL_RenderPresent(this->renderer);
 };

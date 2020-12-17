@@ -19,21 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\AssetSystem.cpp" />
     <ClCompile Include="..\src\Color.cpp" />
     <ClCompile Include="..\src\Entity.cpp" />
-    <ClCompile Include="..\src\EntityManager.cpp" />
+    <ClCompile Include="..\src\EntitySystem.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
+    <ClCompile Include="..\src\Sprite.cpp" />
+    <ClCompile Include="..\src\TextureSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\AssetSystem.h" />
     <ClInclude Include="..\src\Color.h" />
     <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Entity.h" />
-    <ClInclude Include="..\src\EntityManager.h" />
+    <ClInclude Include="..\src\EntitySystem.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\RendererComponent.h" />
+    <ClInclude Include="..\src\Sprite.h" />
     <ClInclude Include="..\src\SpriteRendererComponent.h" />
+    <ClInclude Include="..\src\TextureSystem.h" />
     <ClInclude Include="..\src\TransformComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -96,7 +102,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>F:\Projects\2d-game-engine\2d-game-engine\lib\glm;C:\SDL2-2.0.12\include;F:\Projects\2d-game-engine\2d-game-engine\lib\lua;$(IncludePath)</IncludePath>
+    <IncludePath>F:\Projects\2d-game-engine\2d-game-engine\lib\glm;C:\SDL2-2.0.12\include;F:\Projects\2d-game-engine\2d-game-engine\lib\lua;C:\SDL2-2.0.12\SDL2_image-2.0.5;$(IncludePath)</IncludePath>
     <LibraryPath>C:\SDL2-2.0.12\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,7 +146,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

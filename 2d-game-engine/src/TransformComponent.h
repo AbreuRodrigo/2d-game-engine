@@ -3,6 +3,8 @@
 #include <glm.hpp>
 #include "Component.h"
 
+class Component;
+
 class TransformComponent : public Component
 {
 public:
@@ -28,7 +30,7 @@ public:
     TransformComponent(float xPosition, float yPosition, float xVelocity, float yVelocity, float xScale, float yScale)
     {
         position = glm::vec2(xPosition, yPosition);
-        velocity = glm::vec2(xVelocity, yVelocity);        
+        velocity = glm::vec2(xVelocity, yVelocity);
         scale = glm::vec2(xScale, yScale);
     };
 
@@ -42,4 +44,3 @@ public:
         position.y += velocity.y * deltaTime;
     };
 };
-

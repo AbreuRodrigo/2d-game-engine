@@ -6,10 +6,10 @@
 
 class Entity;
 
-class EntityManager
+class EntitySystem
 {
 private:
-    std::vector<Entity*> entities;
+    std::vector<Entity*> entities;    
 public:
     void clearData();
     void update(float deltaTime);
@@ -18,5 +18,6 @@ public:
     Entity& addEntity(std::string entityName);
     std::vector<Entity*> getEntities() const;
     unsigned int getEntityCount();
+    void listAllEntities() const;
 };
 

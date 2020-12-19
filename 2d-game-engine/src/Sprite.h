@@ -1,8 +1,8 @@
 #pragma once
 
 #include <SDL.h>
-#include <glm.hpp>
-#include "TransformComponent.h"
+#include "./components/Animator2DComponent.h"
+#include "./components/TransformComponent.h"
 
 class Game;
 class AssetSystem;
@@ -10,6 +10,8 @@ class AssetSystem;
 class Sprite
 {
 private:
+    friend class SpriteRendererComponent;
+
     SDL_Texture* texture = nullptr;
     SDL_Rect sourceRect;
     SDL_Rect targetRect;
@@ -18,12 +20,15 @@ private:
     int height;
     Uint32 format;
 
+    void update(TransformComponent* transform, Animator2DComponent* animator2d);
+
 public:
     Sprite(const char* fileName);
-    glm::vec2 originalSize;
+    Sprite(const char* fileName, int width, int height);
     SDL_Texture* getTexture() const;
-    SDL_Rect getSourceRect();
-    SDL_Rect getTargetRect();
+    void setTexture(const char* fileName);
+    void setTexture(const char* fileName, int width, int height);
+    SDL_Rect getSourceRect() const;
+    SDL_Rect getTargetRect() const;
     SDL_RendererFlip getRendererFlip();
-    void updatePosition(TransformComponent* transform);
 };

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm.hpp>
-#include "Component.h"
+#include "../Component.h"
 
 class Component;
 
@@ -34,13 +34,9 @@ public:
         scale = glm::vec2(xScale, yScale);
     };
 
-    void initialize() override 
-    {
-    };
-
-    void update(float deltaTime) override
-    {
-        position.x += velocity.x * deltaTime;
-        position.y += velocity.y * deltaTime;
-    };
+    //void update() override
+    //{
+        //position.x += velocity.x * Time::getDeltaTime();
+        //position.y += velocity.y * Time::getDeltaTime();
+    //};
 };

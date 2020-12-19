@@ -6,10 +6,11 @@
 #include "EntitySystem.h"
 
 class AssetSystem;
+class Time;
 
 class Game
-{
-public:
+{    
+public:    
     Game(int width, int height, Color bgColor, bool fullScreen);
     Game(int width, int height, Color bgColor, const char* screenTitle);
     ~Game();
@@ -38,7 +39,7 @@ protected:
     static SDL_Renderer* renderer;
     
     //Engine Methods
-    void loadLevel(int levelNumber);
+    void loadLevel(int levelIndex);
     void initialize();
     void start();
     void processInput();
@@ -46,7 +47,7 @@ protected:
     void render();
     void destroy();
 
-private:    
+private:
     //System
     void initializeSDL();
     void initializeWindow();

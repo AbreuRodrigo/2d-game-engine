@@ -2,14 +2,16 @@
 
 #include <iostream>
 #include <map>
-#include <vector>
 #include <string>
 #include <typeinfo>
 #include <type_traits>
-#include "EntitySystem.h"
+#include <vector>
 #include "Component.h"
-#include "TransformComponent.h"
-#include "RendererComponent.h"
+#include "./components/TransformComponent.h"
+#include "./components/RendererComponent.h"
+#include "Constants.h"
+#include "EntitySystem.h"
+#include "Time.h"
 
 class Component;
 class EntitySystem;
@@ -18,24 +20,32 @@ class TransformComponent;
 class Entity
 {
 private:
-    EntitySystem& entitySystem;
-    bool active;
+    friend class EntitySystem;       
+    
     std::vector<Component*> components;
     std::map<const std::type_info*, Component*> componentTypes;
+        
+    void render();
+
+protected:
+    bool active;
+
+    EntitySystem& entitySystem;
+        
+    virtual void initialize();
+    virtual void update();
 
 public:
-    std::string name;
-
-    Entity(EntitySystem& entitySystem);
     Entity(EntitySystem& entitySystem, std::string name);
 
+    std::string name;
+        
     TransformComponent* transform;
     RendererComponent* renderer;
 
-    void update(float deltaTime);
-    void render();
     void destroy();
     bool isActive() const;
+    void setActive(bool active);
     void listAllComponents() const;
         
     template <typename T, typename... TArgs>
@@ -46,8 +56,6 @@ public:
         
         components.emplace_back(component);
         componentTypes[&typeid(*component)] = component;
-
-        component->initialize();
 
         if (transform == nullptr)
         {

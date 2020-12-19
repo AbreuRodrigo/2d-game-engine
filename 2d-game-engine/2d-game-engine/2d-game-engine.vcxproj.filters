@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{557dd3bc-642d-49a2-86cf-84e49f9af8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameImplementation">
+      <UniqueIdentifier>{691983c1-c2ce-4861-848e-45fcb8048c0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameImplementation">
+      <UniqueIdentifier>{221a3776-58a8-442d-a130-0a33513f1ba7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Main.cpp">
@@ -39,6 +48,21 @@
     <ClCompile Include="..\src\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Animation2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameImplementation\Tank.cpp">
+      <Filter>Source Files\GameImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameImplementation\Chopper.cpp">
+      <Filter>Source Files\GameImplementation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameImplementation\Radar.cpp">
+      <Filter>Source Files\GameImplementation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -56,15 +80,6 @@
     <ClInclude Include="..\src\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\TransformComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\RendererComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\SpriteRendererComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\EntitySystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -76,6 +91,33 @@
     </ClInclude>
     <ClInclude Include="..\src\Sprite.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\components\RendererComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\components\SpriteRendererComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\components\TransformComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\components\Animator2DComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Animation2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameImplementation\Tank.h">
+      <Filter>Header Files\GameImplementation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameImplementation\Chopper.h">
+      <Filter>Header Files\GameImplementation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\gameImplementation\Radar.h">
+      <Filter>Header Files\GameImplementation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

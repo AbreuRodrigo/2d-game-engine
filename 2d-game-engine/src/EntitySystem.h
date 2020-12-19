@@ -9,15 +9,27 @@ class Entity;
 class EntitySystem
 {
 private:
-    std::vector<Entity*> entities;    
+    std::vector<Entity*> entities;
+
 public:
     void clearData();
-    void update(float deltaTime);
+    void update();
     void render();
     bool hasNoEntities();
-    Entity& addEntity(std::string entityName);
     std::vector<Entity*> getEntities() const;
     unsigned int getEntityCount();
     void listAllEntities() const;
-};
 
+    template <typename T>
+    T& createEntity(std::string entityName)
+    {
+        static_assert(std::is_base_of<Entity, T>::value, "T must inherit from Entity");
+
+        T* entity = new T(*this, entityName);
+        static_cast<Entity*>(entity)->initialize();
+
+        entities.emplace_back(entity);
+
+        return *entity;
+    };
+};

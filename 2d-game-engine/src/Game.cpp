@@ -4,8 +4,10 @@
 #include "AssetSystem.h"
 #include "Constants.h"
 #include "Game.h"
-#include "SpriteRendererComponent.h"
-#include "TransformComponent.h"
+#include "Time.h"
+#include "./gameImplementation/Tank.h"
+#include "./gameImplementation/Chopper.h"
+#include "./gameImplementation/Radar.h"
 
 //Static
 EntitySystem entitySystem;
@@ -50,23 +52,25 @@ Game::~Game()
 {
     assetSystem->clearData();
     delete assetSystem;
-    delete renderer;
 };
 
 //Engine Methods
-void Game::loadLevel(int levelNumber)
+void Game::loadLevel(int levelIndex)
 {
-    std::string texturefilePath = "../assets/images/tank-big-right.png";
-    assetSystem->addTexture("tankImage", texturefilePath.c_str());
+    assetSystem->addTexture("tankImage", std::string("../assets/images/tank-big-right.png").c_str());
+    assetSystem->addTexture("chopperImage", std::string("../assets/images/chopper-spritesheet.png").c_str());
+    assetSystem->addTexture("radarImage", std::string("../assets/images/radar.png").c_str());
 
-    Entity& player = entitySystem.addEntity("Tank");
-    player.addComponent<TransformComponent>(this->windowWidth * 0.5f, this->windowHeight * 0.5f, 20, 0, 2, 2);
-    player.addComponent<SpriteRendererComponent>("tankImage", Color(255, 127, 0, 1));
+    entitySystem.createEntity<Tank>("Tank");
+    entitySystem.createEntity<Chopper>("Chopper");
+    entitySystem.createEntity<Radar>("Radar");
 };
 
 void Game::initialize()
 {
     std::cout << "Game initializing..." << std::endl;
+
+    Time::initializeTime();
 
     this->initializeSDL();
 
@@ -87,11 +91,13 @@ void Game::initialize()
         };
 
         this->destroy();
-    }
+    }        
 };
 
 void Game::destroy()
 {
+    std::cout << "Game finalizing..." << std::endl;
+
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
     SDL_Quit();
@@ -125,15 +131,12 @@ void Game::update()
         SDL_Delay(timeToWait);
     }
 
-    //while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksLastFrame - FRAME_TARGET_TIME));
-
-    float deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.0f;
-
-    deltaTime = (deltaTime > 0.05f) ? 0.05f : deltaTime;
+    Time::deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.0f;
+    Time::deltaTime = (Time::deltaTime > 0.05f) ? 0.05f : Time::deltaTime;
             
     ticksLastFrame = SDL_GetTicks();
 
-    entitySystem.update(deltaTime);    
+    entitySystem.update();
 };
 
 void Game::render()
@@ -174,7 +177,7 @@ void Game::initializeWindow()
         SDL_WINDOWPOS_CENTERED,
         this->windowWidth,
         this->windowHeight,
-        this->isFullScreen ? SDL_WINDOW_FULLSCREEN : SDL_WINDOW_MAXIMIZED
+        this->isFullScreen ? SDL_WindowFlags::SDL_WINDOW_FULLSCREEN : SDL_WindowFlags::SDL_WINDOW_MAXIMIZED
     );
 
     if (this->window == nullptr)

@@ -8,7 +8,7 @@ class Component;
 class RendererComponent : public Component
 {
 public:
-    RendererComponent() : color(Color::white)
+    RendererComponent() : size(glm::vec2(0, 0)), color(Color::white)
     {
     };
 
@@ -23,6 +23,5 @@ public:
     glm::vec2 size;
     Color color;
 
-    virtual void initialize() {}
     virtual void render() {}
 };

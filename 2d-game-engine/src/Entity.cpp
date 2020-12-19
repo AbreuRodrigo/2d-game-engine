@@ -1,33 +1,24 @@
 #include "Entity.h"
 
-Entity::Entity(EntitySystem& entitySystem) : entitySystem(entitySystem)
-{
-    this->active = true;
-    this->transform = nullptr;
-    this->renderer = nullptr;
-};
-
 Entity::Entity(EntitySystem& entitySystem, std::string name) : entitySystem(entitySystem), name(name)
 {
     this->active = true;
     this->transform = nullptr;
     this->renderer = nullptr;
+
+    this->initialize();
 };
 
-void Entity::update(float deltaTime)
-{
-    for (auto& component : components)
-    {
-        component->update(deltaTime);
-    }
-};
+void Entity::initialize() { };
+
+void Entity::update() { };
 
 void Entity::render()
 {
     if (renderer != nullptr)
     {
         renderer->render();
-    }
+    }    
 };
 
 void Entity::destroy()
@@ -38,6 +29,11 @@ void Entity::destroy()
 bool Entity::isActive() const
 {
     return this->active;
+};
+
+void Entity::setActive(bool active)
+{
+    this->active = active;
 };
 
 void Entity::listAllComponents() const

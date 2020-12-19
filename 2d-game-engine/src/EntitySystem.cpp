@@ -1,5 +1,5 @@
-#include "EntitySystem.h"
 #include <iostream>
+#include "EntitySystem.h"
 
 void EntitySystem::clearData()
 {
@@ -14,11 +14,14 @@ bool EntitySystem::hasNoEntities()
     return entities.size() == 0;
 };
 
-void EntitySystem::update(float deltaTime)
+void EntitySystem::update()
 {
     for (auto& entity : entities)
     {
-        entity->update(deltaTime);
+        if (entity->active)
+        {
+            entity->update();
+        }
     }
 };
 
@@ -26,16 +29,11 @@ void EntitySystem::render()
 {
     for (auto& entity : entities)
     {
-        entity->render();
+        if (entity->active)
+        {
+            entity->render();
+        }
     }
-};
-
-Entity& EntitySystem::addEntity(std::string entityName)
-{
-    Entity* entity = new Entity(*this, entityName);
-    entities.emplace_back(entity);
-
-    return *entity;
 };
 
 std::vector<Entity*> EntitySystem::getEntities() const
@@ -45,7 +43,7 @@ std::vector<Entity*> EntitySystem::getEntities() const
 
 unsigned int EntitySystem::getEntityCount()
 {
-    return (int) entities.size();
+    return static_cast<int>(entities.size());
 };
 
 void EntitySystem::listAllEntities() const

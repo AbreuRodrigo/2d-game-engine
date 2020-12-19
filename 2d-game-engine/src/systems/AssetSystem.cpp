@@ -1,10 +1,5 @@
 #include "AssetSystem.h"
-#include "EntitySystem.h"
 #include "TextureSystem.h"
-
-AssetSystem::AssetSystem(EntitySystem* entitySystem) : entitySystem(entitySystem)
-{
-};
 
 void AssetSystem::clearData()
 {

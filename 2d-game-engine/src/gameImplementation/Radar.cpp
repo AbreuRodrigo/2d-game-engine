@@ -6,7 +6,7 @@ Radar::Radar(EntitySystem& entitySystem, std::string name) : Entity(entitySystem
 
 void Radar::initialize()
 {
-    this->addComponent<TransformComponent>(WINDOW_WIDTH - (10.f + 64.f), 10.f);
+    this->addComponent<TransformComponent>(ScreenSystem::getTopRight().x - (10.f + 64.f), 10.f);
     this->addComponent<SpriteRendererComponent>("radarImage", 64, 64);
     this->addComponent<Animator2DComponent>(8, 100, true, false);
 };

@@ -2,16 +2,17 @@
 
 #include <SDL.h>
 #include "Color.h"
-#include "AssetSystem.h"
-#include "EntitySystem.h"
+#include "systems/AssetSystem.h"
+#include "systems/EntitySystem.h"
 
 class AssetSystem;
-class Time;
+class TimeSystem;
 
 class Game
 {    
-public:    
-    Game(int width, int height, Color bgColor, bool fullScreen);
+public:
+    Game();
+    Game(Color bgColor);
     Game(int width, int height, Color bgColor, const char* screenTitle);
     ~Game();
 
@@ -30,24 +31,25 @@ protected:
     //Core
     bool isRunning = false;
 
-    //Time
-    int ticksLastFrame = 0;
-
     //Components    
     SDL_Window* window;
     static AssetSystem* assetSystem;
     static SDL_Renderer* renderer;
     
     //Engine Methods
-    void loadLevel(int levelIndex);
-    void initialize();
     void start();
+    void loadLevel(int levelIndex);
     void processInput();
     void update();
     void render();
     void destroy();
 
 private:
+    friend class GameRunner;
+
+    //Engine Methods
+    void initialize();
+
     //System
     void initializeSDL();
     void initializeWindow();

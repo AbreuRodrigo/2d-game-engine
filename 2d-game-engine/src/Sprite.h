@@ -1,8 +1,8 @@
 #pragma once
 
 #include <SDL.h>
-#include "./components/Animator2DComponent.h"
-#include "./components/TransformComponent.h"
+#include "components/Animator2DComponent.h"
+#include "components/TransformComponent.h"
 
 class Game;
 class AssetSystem;

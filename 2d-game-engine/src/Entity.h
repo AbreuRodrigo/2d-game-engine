@@ -7,10 +7,10 @@
 #include <type_traits>
 #include <vector>
 #include "Component.h"
-#include "./components/TransformComponent.h"
-#include "./components/RendererComponent.h"
-#include "Constants.h"
-#include "EntitySystem.h"
+#include "components/TransformComponent.h"
+#include "components/RendererComponent.h"
+#include "systems/EntitySystem.h"
+#include "systems/ScreenSystem.h"
 #include "Time.h"
 
 class Component;

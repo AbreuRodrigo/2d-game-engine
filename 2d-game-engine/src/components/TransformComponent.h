@@ -33,10 +33,4 @@ public:
         velocity = glm::vec2(xVelocity, yVelocity);
         scale = glm::vec2(xScale, yScale);
     };
-
-    //void update() override
-    //{
-        //position.x += velocity.x * Time::getDeltaTime();
-        //position.y += velocity.y * Time::getDeltaTime();
-    //};
 };

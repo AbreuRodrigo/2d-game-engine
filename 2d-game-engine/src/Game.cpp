@@ -1,18 +1,18 @@
 #include <iostream>
 #include <glm.hpp>
 #include <SDL.h>
-#include "AssetSystem.h"
-#include "Constants.h"
 #include "Game.h"
+#include "gameImplementation/Tank.h"
+#include "gameImplementation/Chopper.h"
+#include "gameImplementation/Radar.h"
+#include "systems/AssetSystem.h"
+#include "systems/ScreenSystem.h"
 #include "Time.h"
-#include "./gameImplementation/Tank.h"
-#include "./gameImplementation/Chopper.h"
-#include "./gameImplementation/Radar.h"
 
 //Static
 EntitySystem entitySystem;
 
-AssetSystem* Game::assetSystem = new AssetSystem(&entitySystem);
+AssetSystem* Game::assetSystem = new AssetSystem();
 AssetSystem* Game::getAssetSystem()
 {
     return assetSystem;
@@ -25,15 +25,12 @@ SDL_Renderer* Game::getRenderer()
 };
 
 //Public
-Game::Game(int width, int height, Color bgColor, bool fullScreen)
+Game::Game() : Game(bgColor)
 {
-    this->isRunning = false;
-    this->isFullScreen = fullScreen;
-    this->windowWidth = width;
-    this->windowHeight = height;
-    this->bgColor = bgColor;
+};
 
-    this->initialize();
+Game::Game(Color bgColor) : isRunning(true), isFullScreen(true), bgColor(bgColor), screenTitle("")
+{    
 };
 
 Game::Game(int width, int height, Color bgColor, const char* screenTitle)
@@ -44,8 +41,6 @@ Game::Game(int width, int height, Color bgColor, const char* screenTitle)
     this->windowHeight = height;
     this->bgColor = bgColor;
     this->screenTitle = screenTitle;
-
-    this->initialize();
 };
 
 Game::~Game()
@@ -70,9 +65,10 @@ void Game::initialize()
 {
     std::cout << "Game initializing..." << std::endl;
 
-    Time::initializeTime();
-
     this->initializeSDL();
+
+    TimeSystem::initializeTime();
+    ScreenSystem::setSize(windowWidth, windowHeight);
 
     if (this->window != nullptr && this->renderer != nullptr)
     {
@@ -124,18 +120,7 @@ void Game::processInput()
 
 void Game::update()
 {
-    int timeToWait = FRAME_TARGET_TIME - (SDL_GetTicks() - ticksLastFrame);
-
-    if (timeToWait > 0 && timeToWait <= FRAME_TARGET_TIME)
-    {
-        SDL_Delay(timeToWait);
-    }
-
-    Time::deltaTime = (SDL_GetTicks() - ticksLastFrame) / 1000.0f;
-    Time::deltaTime = (Time::deltaTime > 0.05f) ? 0.05f : Time::deltaTime;
-            
-    ticksLastFrame = SDL_GetTicks();
-
+    TimeSystem::update();
     entitySystem.update();
 };
 
@@ -165,6 +150,11 @@ void Game::initializeSDL()
 
     this->initializeWindow();
     this->initializeRenderer();
+
+    if (this->isFullScreen)
+    {
+        SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+    }
 };
 
 void Game::initializeWindow()
@@ -177,7 +167,7 @@ void Game::initializeWindow()
         SDL_WINDOWPOS_CENTERED,
         this->windowWidth,
         this->windowHeight,
-        this->isFullScreen ? SDL_WindowFlags::SDL_WINDOW_FULLSCREEN : SDL_WindowFlags::SDL_WINDOW_MAXIMIZED
+        this->isFullScreen ? SDL_WindowFlags::SDL_WINDOW_FULLSCREEN : SDL_WindowFlags::SDL_WINDOW_INPUT_FOCUS
     );
 
     if (this->window == nullptr)

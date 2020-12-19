@@ -22,11 +22,14 @@
     <Filter Include="Source Files\GameImplementation">
       <UniqueIdentifier>{221a3776-58a8-442d-a130-0a33513f1ba7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{57a7333d-f9bb-4f23-8a1d-89c753e897a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{0b1c0fc1-820d-4cbc-8133-16c39a55b65b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -34,15 +37,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\EntitySystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\TextureSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\AssetSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Sprite.cpp">
@@ -63,12 +57,24 @@
     <ClCompile Include="..\src\gameImplementation\Radar.cpp">
       <Filter>Source Files\GameImplementation</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\systems\AssetSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\systems\EntitySystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\systems\ScreenSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\systems\TextureSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Main.cpp">
+      <Filter>Source Files\GameImplementation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Color.h">
@@ -78,15 +84,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\EntitySystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\TextureSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\AssetSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Sprite.h">
@@ -118,6 +115,21 @@
     </ClInclude>
     <ClInclude Include="..\src\gameImplementation\Radar.h">
       <Filter>Header Files\GameImplementation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\GameRunner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\AssetSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\EntitySystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\ScreenSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\TextureSystem.h">
+      <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

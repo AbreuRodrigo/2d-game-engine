@@ -1,6 +1,6 @@
-#include "AssetSystem.h"
 #include "Game.h"
 #include "Sprite.h"
+#include "systems/AssetSystem.h"
 
 Sprite::Sprite(const char* fileName)
 {

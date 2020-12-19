@@ -20,37 +20,39 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Animation2D.cpp" />
-    <ClCompile Include="..\src\AssetSystem.cpp" />
     <ClCompile Include="..\src\Color.cpp" />
     <ClCompile Include="..\src\Entity.cpp" />
-    <ClCompile Include="..\src\EntitySystem.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\gameImplementation\Chopper.cpp" />
     <ClCompile Include="..\src\gameImplementation\Radar.cpp" />
     <ClCompile Include="..\src\gameImplementation\Tank.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
     <ClCompile Include="..\src\Sprite.cpp" />
-    <ClCompile Include="..\src\TextureSystem.cpp" />
+    <ClCompile Include="..\src\systems\AssetSystem.cpp" />
+    <ClCompile Include="..\src\systems\EntitySystem.cpp" />
+    <ClCompile Include="..\src\systems\ScreenSystem.cpp" />
+    <ClCompile Include="..\src\systems\TextureSystem.cpp" />
     <ClCompile Include="..\src\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Animation2D.h" />
-    <ClInclude Include="..\src\AssetSystem.h" />
     <ClInclude Include="..\src\Color.h" />
     <ClInclude Include="..\src\Component.h" />
     <ClInclude Include="..\src\components\Animator2DComponent.h" />
     <ClInclude Include="..\src\components\RendererComponent.h" />
     <ClInclude Include="..\src\components\SpriteRendererComponent.h" />
     <ClInclude Include="..\src\components\TransformComponent.h" />
-    <ClInclude Include="..\src\Constants.h" />
     <ClInclude Include="..\src\Entity.h" />
-    <ClInclude Include="..\src\EntitySystem.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\gameImplementation\Chopper.h" />
     <ClInclude Include="..\src\gameImplementation\Radar.h" />
     <ClInclude Include="..\src\gameImplementation\Tank.h" />
+    <ClInclude Include="..\src\GameRunner.h" />
     <ClInclude Include="..\src\Sprite.h" />
-    <ClInclude Include="..\src\TextureSystem.h" />
+    <ClInclude Include="..\src\systems\AssetSystem.h" />
+    <ClInclude Include="..\src\systems\EntitySystem.h" />
+    <ClInclude Include="..\src\systems\ScreenSystem.h" />
+    <ClInclude Include="..\src\systems\TextureSystem.h" />
     <ClInclude Include="..\src\Time.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

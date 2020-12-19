@@ -1,7 +1,7 @@
-#include "Game.h"
-#include "TextureSystem.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include "../Game.h"
+#include "TextureSystem.h"
 
 SDL_Texture* TextureSystem::loadTexture(const char* fileName)
 {

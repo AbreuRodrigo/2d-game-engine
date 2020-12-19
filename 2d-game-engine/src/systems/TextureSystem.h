@@ -1,8 +1,8 @@
 #pragma once
 
 #include <SDL.h>
-#include "Game.h"
-#include "Sprite.h"
+#include "../Game.h"
+#include "../Sprite.h"
 
 class Game;
 

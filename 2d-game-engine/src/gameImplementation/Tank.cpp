@@ -6,11 +6,11 @@ Tank::Tank(EntitySystem& entitySystem, std::string name): Entity(entitySystem, n
 
 void Tank::initialize()
 {   
-    this->addComponent<TransformComponent>(WINDOW_WIDTH * 0.5f, WINDOW_HEIGHT * 0.5f, 0.f, 0.f);
+    this->addComponent<TransformComponent>(ScreenSystem::getMiddleCenter().x - 16, ScreenSystem::getBottomCenter().y - 32, 0.f, 0.f);
     this->addComponent<SpriteRendererComponent>("tankImage", 32, 32);
 };
 
 void Tank::update()
 {
-    transform->position.x += 20 * Time::getDeltaTime();
+    transform->position.x += 20 * TimeSystem::getDeltaTime();
 };

@@ -42,9 +42,6 @@
     <ClCompile Include="..\src\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Time.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Animation2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,6 +69,9 @@
     <ClCompile Include="..\src\Main.cpp">
       <Filter>Source Files\GameImplementation</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\systems\TimeSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h">
@@ -97,9 +97,6 @@
     </ClInclude>
     <ClInclude Include="..\src\components\TransformComponent.h">
       <Filter>Header Files\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Time.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\components\Animator2DComponent.h">
       <Filter>Header Files\Components</Filter>
@@ -129,6 +126,9 @@
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="..\src\systems\TextureSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\TimeSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>

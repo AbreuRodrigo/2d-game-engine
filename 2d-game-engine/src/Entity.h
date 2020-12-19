@@ -11,7 +11,7 @@
 #include "components/RendererComponent.h"
 #include "systems/EntitySystem.h"
 #include "systems/ScreenSystem.h"
-#include "Time.h"
+#include "systems/TimeSystem.h"
 
 class Component;
 class EntitySystem;

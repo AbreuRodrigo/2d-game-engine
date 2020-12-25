@@ -1,12 +1,12 @@
 #include <SDL.h>
 #include <SDL_image.h>
-#include "../Game.h"
+#include "GameSystem.h"
 #include "TextureSystem.h"
 
 SDL_Texture* TextureSystem::loadTexture(const char* fileName)
 {
     SDL_Surface* surface = IMG_Load(fileName);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(Game::getRenderer(), surface);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(GameSystem::getRenderer(), surface);
     SDL_FreeSurface(surface);
 
     return texture;
@@ -14,7 +14,7 @@ SDL_Texture* TextureSystem::loadTexture(const char* fileName)
 
 void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect targetRect, SDL_RendererFlip flip)
 {
-    SDL_RenderCopyEx(Game::getRenderer(), texture, &sourceRect, &targetRect, 0.0, nullptr, flip);
+    SDL_RenderCopyEx(GameSystem::getRenderer(), texture, &sourceRect, &targetRect, 0.0, nullptr, flip);
 };
 
 void TextureSystem::drawSprite(Sprite* sprite)

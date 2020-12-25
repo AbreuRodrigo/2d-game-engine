@@ -6,7 +6,7 @@
 class TimeSystem
 {
 private:
-    friend class Game;
+    friend class GameSystem;
 
     static const int FPS = 60;
     static const int TARGET_FRAME_RATE = 1000 / FPS;

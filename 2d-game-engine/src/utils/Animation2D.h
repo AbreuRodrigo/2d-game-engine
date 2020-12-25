@@ -10,4 +10,3 @@ public:
     Animation2D();
     Animation2D(unsigned int index, unsigned int frames, unsigned int speed);
 };
-

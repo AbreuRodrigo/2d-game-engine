@@ -2,7 +2,7 @@
 
 #include <glm.hpp>
 
-class Game;
+class GameSystem;
 
 class ScreenSystem
 {
@@ -21,10 +21,9 @@ public:
     static glm::vec2 getMiddleRight();
 
 private:
-    friend class Game;
+    friend class GameSystem;
 
     static void setSize(int w, int h);
     static int width;
     static int height;
 };
-

@@ -1,39 +1,40 @@
 #include <iostream>
 #include <glm.hpp>
 #include <SDL.h>
-#include "Game.h"
-#include "gameImplementation/Tank.h"
-#include "gameImplementation/Chopper.h"
-#include "gameImplementation/Radar.h"
-#include "systems/AssetSystem.h"
-#include "systems/ScreenSystem.h"
-#include "systems/TimeSystem.h"
+#include "../gameImplementation/Tank.h"
+#include "../gameImplementation/Chopper.h"
+#include "../gameImplementation/Radar.h"
+#include "GameSystem.h"
+#include "AssetSystem.h"
+#include "ScreenSystem.h"
+#include "TimeSystem.h"
+#include "InputSystem.h"
 
 //Static
 EntitySystem entitySystem;
 
-AssetSystem* Game::assetSystem = new AssetSystem();
-AssetSystem* Game::getAssetSystem()
+AssetSystem* GameSystem::assetSystem = new AssetSystem();
+AssetSystem* GameSystem::getAssetSystem()
 {
     return assetSystem;
 };
 
-SDL_Renderer* Game::renderer;
-SDL_Renderer* Game::getRenderer()
+SDL_Renderer* GameSystem::renderer;
+SDL_Renderer* GameSystem::getRenderer()
 {
     return renderer;
 };
 
 //Public
-Game::Game() : Game(bgColor)
+GameSystem::GameSystem() : GameSystem(bgColor)
 {
 };
 
-Game::Game(Color bgColor) : isRunning(true), isFullScreen(true), bgColor(bgColor), screenTitle("")
+GameSystem::GameSystem(Color bgColor) : isRunning(true), isFullScreen(true), bgColor(bgColor), screenTitle(""), window(nullptr)
 {    
 };
 
-Game::Game(int width, int height, Color bgColor, const char* screenTitle)
+GameSystem::GameSystem(int width, int height, Color bgColor, const char* screenTitle) : window(nullptr)
 {
     this->isRunning = false;
     this->isFullScreen = false;
@@ -43,14 +44,14 @@ Game::Game(int width, int height, Color bgColor, const char* screenTitle)
     this->screenTitle = screenTitle;
 };
 
-Game::~Game()
+GameSystem::~GameSystem()
 {
     assetSystem->clearData();
     delete assetSystem;
 };
 
 //Engine Methods
-void Game::loadLevel(int levelIndex)
+void GameSystem::loadLevel(int levelIndex)
 {
     assetSystem->addTexture("tankImage", std::string("../assets/images/tank-big-right.png").c_str());
     assetSystem->addTexture("chopperImage", std::string("../assets/images/chopper-spritesheet.png").c_str());
@@ -61,7 +62,7 @@ void Game::loadLevel(int levelIndex)
     entitySystem.createEntity<Radar>("Radar");
 };
 
-void Game::initialize()
+void GameSystem::initialize()
 {
     std::cout << "Game initializing..." << std::endl;
 
@@ -90,7 +91,7 @@ void Game::initialize()
     }        
 };
 
-void Game::destroy()
+void GameSystem::destroy()
 {
     std::cout << "Game finalizing..." << std::endl;
 
@@ -99,32 +100,28 @@ void Game::destroy()
     SDL_Quit();
 
     this->isRunning = false;
-    this->~Game();
+    this->~GameSystem();
 };
 
-void Game::start() 
+void GameSystem::start() 
 {
 };
 
-void Game::processInput()
+void GameSystem::processInput()
 {
-    SDL_Event event;
-    SDL_PollEvent(&event);
-
-    if (event.type == SDL_QUIT || 
-       (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
+    if (InputSystem::getKeyDown(KeyCode::ESPACE))
     { 
         this->isRunning = false;
     };
 };
 
-void Game::update()
+void GameSystem::update()
 {
     TimeSystem::update();
     entitySystem.update();
 };
 
-void Game::render()
+void GameSystem::render()
 {
     SDL_SetRenderDrawColor(this->renderer, this->bgColor.r, this->bgColor.g, this->bgColor.b, this->bgColor.a);
     SDL_RenderClear(this->renderer);
@@ -140,7 +137,7 @@ void Game::render()
 };
 
 //System
-void Game::initializeSDL()
+void GameSystem::initializeSDL()
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
@@ -157,7 +154,7 @@ void Game::initializeSDL()
     }
 };
 
-void Game::initializeWindow()
+void GameSystem::initializeWindow()
 {
     const char* title = (this->screenTitle != nullptr) ? this->screenTitle : "Game Title";
 
@@ -176,7 +173,7 @@ void Game::initializeWindow()
     };
 };
 
-void Game::initializeRenderer()
+void GameSystem::initializeRenderer()
 {
     if (this->window != nullptr)
     {

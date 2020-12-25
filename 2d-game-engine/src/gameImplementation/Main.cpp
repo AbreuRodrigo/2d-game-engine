@@ -1,11 +1,11 @@
 #include <iostream>
 #include <SDL.h>
-#include "../Color.h"
-#include "MyGame.h"
-#include "../GameRunner.h"
+#include "../systems/GameSystem.h"
+#include "../utils/Color.h"
+#include "../utils/GameRunner.h"
 
 int main(int argc, char* args[])
 {
-    GameRunner::run<MyGame>(Color::cornFlowerBlue);
+    GameRunner::run<GameSystem>(Color::cornFlowerBlue);
     return 0;
 }

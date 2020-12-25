@@ -1,9 +1,11 @@
 #pragma once
 
 #include <SDL.h>
-#include "../Game.h"
-#include "../Color.h"
-#include "../Sprite.h"
+#include "../systems/GameSystem.h"
+#include "../systems/TextureSystem.h"
+#include "../components/TransformComponent.h"
+#include "../utils/Color.h"
+#include "../utils/Sprite.h"
 
 class RendererComponent;
 class TextureSystem;

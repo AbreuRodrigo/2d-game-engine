@@ -28,23 +28,14 @@
     <Filter Include="Source Files\Systems">
       <UniqueIdentifier>{0b1c0fc1-820d-4cbc-8133-16c39a55b65b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{44a4a7b9-a6f7-4455-a0a6-62085fbbcce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{3243b036-4272-49e0-a3c6-a8fab5df00bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Animation2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\gameImplementation\Tank.cpp">
       <Filter>Source Files\GameImplementation</Filter>
     </ClCompile>
@@ -66,29 +57,32 @@
     <ClCompile Include="..\src\systems\TextureSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Main.cpp">
-      <Filter>Source Files\GameImplementation</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\systems\TimeSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\systems\InputSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\Animation2D.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\Entity.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\Color.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\Sprite.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\systems\GameSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\gameImplementation\Main.cpp">
+      <Filter>Source Files\GameImplementation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\components\RendererComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -101,9 +95,6 @@
     <ClInclude Include="..\src\components\Animator2DComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Animation2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\gameImplementation\Tank.h">
       <Filter>Header Files\GameImplementation</Filter>
     </ClInclude>
@@ -112,9 +103,6 @@
     </ClInclude>
     <ClInclude Include="..\src\gameImplementation\Radar.h">
       <Filter>Header Files\GameImplementation</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\GameRunner.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\systems\AssetSystem.h">
       <Filter>Header Files\Systems</Filter>
@@ -129,6 +117,33 @@
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
     <ClInclude Include="..\src\systems\TimeSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\InputSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\KeyCode.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Animation2D.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Component.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Entity.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Color.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\GameRunner.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Sprite.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\GameSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
   </ItemGroup>

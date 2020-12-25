@@ -2,9 +2,9 @@
 
 #include <map>
 #include <string>
-#include "../Animation2D.h"
-#include "../Component.h"
-#include "../Entity.h"
+#include "../utils/Animation2D.h"
+#include "../utils/Component.h"
+#include "../utils//Entity.h"
 
 class Component;
 
@@ -16,15 +16,15 @@ private:
     unsigned int curAnimationFrames;
     unsigned int curAnimationSpeed;
     std::map<std::string, Animation2D> animations;
-    std::string currentAnimation;    
+    std::string currentAnimation;
 
 public:
     Animator2DComponent(int frames, int speed, bool fixed, bool hasDirections)
-    {        
+    {
         this->curAnimationFrames = frames;
         this->curAnimationSpeed = speed;
         this->fixed = fixed;
-        
+
         if (hasDirections)
         {
             Animation2D downAnimation = Animation2D(0, frames, speed);

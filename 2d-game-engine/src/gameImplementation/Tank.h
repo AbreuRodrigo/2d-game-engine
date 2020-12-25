@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Entity.h"
 #include "../components/SpriteRendererComponent.h"
 #include "../components/TransformComponent.h"
+#include "../utils/Entity.h"
 
 class Tank : public Entity
 {

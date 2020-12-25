@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm.hpp>
-#include "Color.h"
+#include "../utils/Color.h"
 
 class Component;
 

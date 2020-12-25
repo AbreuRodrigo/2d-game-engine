@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm.hpp>
-#include "../Component.h"
+#include "../utils/Component.h"
 
 class Component;
 
@@ -13,7 +13,7 @@ public:
     glm::vec2 scale;
 
     TransformComponent() : position(glm::vec2(0.f, 0.f)), velocity(glm::vec2(0.f, 0.f)), scale(glm::vec2(1.f, 1.f))
-    {        
+    {
     };
 
     TransformComponent(float xPosition, float yPosition) : velocity(glm::vec2(0.f, 0.f)), scale(glm::vec2(1.f, 1.f))

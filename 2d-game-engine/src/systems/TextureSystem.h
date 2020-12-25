@@ -1,10 +1,10 @@
 #pragma once
 
 #include <SDL.h>
-#include "../Game.h"
-#include "../Sprite.h"
+#include "GameSystem.h"
+#include "../utils/Sprite.h"
 
-class Game;
+class GameSystem;
 
 class TextureSystem
 {

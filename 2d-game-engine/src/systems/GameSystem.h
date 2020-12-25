@@ -1,20 +1,20 @@
 #pragma once
 
 #include <SDL.h>
-#include "Color.h"
-#include "systems/AssetSystem.h"
-#include "systems/EntitySystem.h"
+#include "../utils/Color.h"
+#include "AssetSystem.h"
+#include "EntitySystem.h"
 
 class AssetSystem;
 class TimeSystem;
 
-class Game
-{    
+class GameSystem
+{
 public:
-    Game();
-    Game(Color bgColor);
-    Game(int width, int height, Color bgColor, const char* screenTitle);
-    ~Game();
+    GameSystem();
+    GameSystem(Color bgColor);
+    GameSystem(int width, int height, Color bgColor, const char* screenTitle);
+    ~GameSystem();
 
     static AssetSystem* getAssetSystem();
     static SDL_Renderer* getRenderer();
@@ -35,7 +35,7 @@ protected:
     SDL_Window* window;
     static AssetSystem* assetSystem;
     static SDL_Renderer* renderer;
-    
+
     //Engine Methods
     void start();
     void loadLevel(int levelIndex);

@@ -23,11 +23,11 @@ private:
     void update(TransformComponent* transform, Animator2DComponent* animator2d);
 
 public:
-    Sprite(const char* fileName);
-    Sprite(const char* fileName, int width, int height);
+    Sprite(const char* textureId);
+    Sprite(const char* textureId, int width, int height);
     SDL_Texture* getTexture() const;
-    void setTexture(const char* fileName);
-    void setTexture(const char* fileName, int width, int height);
+    void setTexture(const char* textureId);
+    void setTexture(const char* textureId, int width, int height);
     SDL_Rect getSourceRect() const;
     SDL_Rect getTargetRect() const;
     SDL_RendererFlip getRendererFlip();

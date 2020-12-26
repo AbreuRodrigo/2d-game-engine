@@ -1,25 +1,17 @@
 #include <iostream>
 #include <glm.hpp>
 #include <SDL.h>
-#include "../gameImplementation/Tank.h"
-#include "../gameImplementation/Chopper.h"
-#include "../gameImplementation/Radar.h"
 #include "GameSystem.h"
 #include "AssetSystem.h"
+#include "EntitySystem.h"
 #include "ScreenSystem.h"
 #include "TimeSystem.h"
 #include "InputSystem.h"
 #include "../utils/Map.h"
 
-
 //Static
-EntitySystem entitySystem;
-
-std::unique_ptr<AssetSystem> GameSystem::assetSystem = std::unique_ptr<AssetSystem>(new AssetSystem());
-AssetSystem* GameSystem::getAssetSystem()
-{
-    return assetSystem.get();
-};
+std::unique_ptr<EntitySystem> GameSystem::entitySystem(new EntitySystem());
+std::unique_ptr<AssetSystem> GameSystem::assetSystem(new AssetSystem());
 
 SDL_Renderer* GameSystem::renderer;
 SDL_Renderer* GameSystem::getRenderer()
@@ -27,42 +19,18 @@ SDL_Renderer* GameSystem::getRenderer()
     return renderer;
 };
 
-std::unique_ptr<Map> map;
+void GameSystem::loadTextureAsset(std::string textureId, std::string texturePath)
+{
+    assetSystem->addTexture(textureId, std::string(texturePath).c_str());
+};
+
+SDL_Texture* GameSystem::getTextureAsset(std::string textureId)
+{
+    return assetSystem->getTexture(textureId);
+};
 
 //Public
-GameSystem::GameSystem() : GameSystem(bgColor)
-{
-};
-
-GameSystem::GameSystem(Color bgColor) : isRunning(true), isFullScreen(true), bgColor(bgColor), screenTitle(""), window(nullptr)
-{    
-};
-
-GameSystem::GameSystem(int width, int height, Color bgColor, const char* screenTitle) : window(nullptr)
-{
-    this->isRunning = false;
-    this->isFullScreen = false;
-    this->windowWidth = width;
-    this->windowHeight = height;
-    this->bgColor = bgColor;
-    this->screenTitle = screenTitle;
-};
-
-//Engine Methods
-void GameSystem::loadLevel(int levelIndex)
-{    
-    assetSystem->addTexture("tankImage", std::string("../assets/images/tank-big-right.png").c_str());
-    assetSystem->addTexture("chopperImage", std::string("../assets/images/chopper-spritesheet.png").c_str());
-    assetSystem->addTexture("radarImage", std::string("../assets/images/radar.png").c_str());
-    assetSystem->addTexture("jungleTileTexture", std::string("../assets/tilemaps/jungle.png").c_str());
-
-    map = std::unique_ptr<Map>(new Map("jungleTileTexture", 2, 32));
-    map->loadMap("../assets/tilemaps/jungle.map", 25, 20);// TODO change this once we have configs
-
-    entitySystem.createEntity<Tank>("Tank");
-    entitySystem.createEntity<Chopper>("Chopper");
-    entitySystem.createEntity<Radar>("Radar");
-};
+GameSystem::GameSystem(Game* gameInstance) : gameInstance(gameInstance), window(nullptr) { };
 
 void GameSystem::initialize()
 {
@@ -71,18 +39,18 @@ void GameSystem::initialize()
     this->initializeSDL();
 
     TimeSystem::initializeTime();
-    ScreenSystem::setSize(windowWidth, windowHeight);
+    ScreenSystem::setSize(gameInstance->windowWidth, gameInstance->windowHeight);
 
     if (this->window != nullptr && this->renderer != nullptr)
     {
         std::cout << "Game running!" << std::endl;
 
-        loadLevel(0);
+        gameInstance->isRunning = true;
+        gameInstance->start();
 
-        this->isRunning = true;
-        this->start();
+        gameInstance->loadLevel(0);
 
-        while (this->isRunning)
+        while (gameInstance->isRunning)
         {
             this->processInput();
             this->update();
@@ -101,39 +69,36 @@ void GameSystem::destroy()
     SDL_DestroyWindow(this->window);
     SDL_Quit();
 
-    this->isRunning = false;
-    this->~GameSystem();
-};
+    gameInstance->isRunning = false;
 
-void GameSystem::start() 
-{
+    this->~GameSystem();
 };
 
 void GameSystem::processInput()
 {
     if (InputSystem::getKeyDown(KeyCode::ESPACE))
     { 
-        this->isRunning = false;
+        gameInstance->isRunning = false;
     };
 };
 
 void GameSystem::update()
 {
     TimeSystem::update();
-    entitySystem.update();
+    entitySystem->update();
 };
 
 void GameSystem::render()
 {
-    SDL_SetRenderDrawColor(this->renderer, this->bgColor.r, this->bgColor.g, this->bgColor.b, this->bgColor.a);
+    SDL_SetRenderDrawColor(this->renderer, gameInstance->bgColor.r, gameInstance->bgColor.g, gameInstance->bgColor.b, gameInstance->bgColor.a);
     SDL_RenderClear(this->renderer);
 
-    if (entitySystem.hasNoEntities())
+    if (entitySystem->hasNoEntities())
     {
         return;
     }
     
-    entitySystem.render();
+    entitySystem->render();
 
     SDL_RenderPresent(this->renderer);
 };
@@ -150,23 +115,23 @@ void GameSystem::initializeSDL()
     this->initializeWindow();
     this->initializeRenderer();
 
-    if (this->isFullScreen)
+    if (gameInstance->isFullScreen)
     {
-        SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+        SDL_GetWindowSize(window, &gameInstance->windowWidth, &gameInstance->windowHeight);
     }
 };
 
 void GameSystem::initializeWindow()
 {
-    const char* title = (this->screenTitle != nullptr) ? this->screenTitle : "Game Title";
+    const char* title = (gameInstance->screenTitle != nullptr) ? gameInstance->screenTitle : "Game Title";
 
     this->window = SDL_CreateWindow(
-        !this->isFullScreen ? this->screenTitle : nullptr,
+        !gameInstance->isFullScreen ? gameInstance->screenTitle : nullptr,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        this->windowWidth,
-        this->windowHeight,
-        this->isFullScreen ? SDL_WindowFlags::SDL_WINDOW_FULLSCREEN : SDL_WindowFlags::SDL_WINDOW_INPUT_FOCUS
+        gameInstance->windowWidth,
+        gameInstance->windowHeight,
+        gameInstance->isFullScreen ? SDL_WindowFlags::SDL_WINDOW_FULLSCREEN : SDL_WindowFlags::SDL_WINDOW_INPUT_FOCUS
     );
 
     if (this->window == nullptr)

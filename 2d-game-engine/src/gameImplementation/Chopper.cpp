@@ -1,13 +1,13 @@
 #include "Chopper.h"
 
-Chopper::Chopper(EntitySystem& entitySystem, std::string name) : Entity(entitySystem, name)
+Chopper::Chopper(EntitySystem& entitySystem, std::string name) : Entity::Entity(entitySystem, name)
 {
 };
 
 void Chopper::initialize()
 {
     transform = &this->addComponent<TransformComponent>(ScreenSystem::getMiddleCenter().x - 16, ScreenSystem::getTopCenter().y, 0.f, 0.f);
-    spriteRenderer = &this->addComponent<SpriteRendererComponent>("chopperImage", 32, 32);
+    spriteRenderer = &this->addComponent<SpriteRendererComponent>("ChopperImage", 32, 32);
     animator2D = &this->addComponent<Animator2DComponent>(2, 75, false, true);
 };
 

@@ -4,8 +4,6 @@
 #include "../systems/EntitySystem.h"
 #include "../components/TileRendererComponent.h"
 
-extern EntitySystem entitySystem;
-
 Map::Map(std::string textureId, int scale, int tileSize)
 {
     this->textureId = textureId;
@@ -33,13 +31,13 @@ void Map::loadMap(std::string filePath, int mapSizeX, int mapSizeY)
             int sourceRectX = atoi(&mapChar) * tileSize;
 
             addTile(sourceRectX, sourceRectY, x * (scale * tileSize), y * (scale * tileSize));
-            mapFile.ignore(); // To avoid reading the comman in the map file
+            mapFile.ignore(); // To avoid reading the comma in the map file
         };
     };
 };
 
 void Map::addTile(int sourceRectX, int sourceRectY, int x, int y)
 {
-    Entity& tile(entitySystem.createEntity<Entity>("Tile"));
+    Entity& tile(GameSystem::createEntity<Entity>("Tile"));
     tile.addComponent<TileRendererComponent>(sourceRectX, sourceRectY, x, y, tileSize, scale, textureId);
 };

@@ -20,13 +20,14 @@ protected:
     glm::vec2 position;
 
 public:
-    TileRendererComponent(int sourceRectX, int sourceRectY, int x, int y, int tileSize, int tileScale, std::string textureId) : TileRendererComponent(sourceRectX, sourceRectY, x, y, tileSize, tileScale, textureId, Color::white)
+    TileRendererComponent(int sourceRectX, int sourceRectY, int x, int y, int tileSize, int tileScale, std::string textureId) : 
+        TileRendererComponent(sourceRectX, sourceRectY, x, y, tileSize, tileScale, textureId, Color::white)
     {        
     };
 
     TileRendererComponent(int sourceRectX, int sourceRectY, int x, int y, int tileSize, int tileScale, std::string textureId, const Color color)
     {
-        texture = GameSystem::getAssetSystem()->getTexture(textureId);
+        texture = GameSystem::getTextureAsset(textureId);
 
         this->size.x = static_cast<float>(sourceRectX);
         this->size.y = static_cast<float>(sourceRectY);
@@ -53,6 +54,6 @@ public:
 
     void render() override
     {
-        TextureSystem::drawTexture(texture, sourceRect, destinationRect, SDL_RendererFlip::SDL_FLIP_NONE);
+        TextureSystem::drawTexture(texture, sourceRect, destinationRect);
     };
 };

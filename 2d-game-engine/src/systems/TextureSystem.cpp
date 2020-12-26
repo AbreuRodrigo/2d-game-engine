@@ -12,9 +12,14 @@ SDL_Texture* TextureSystem::loadTexture(const char* fileName)
     return texture;
 };
 
-void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect targetRect, SDL_RendererFlip flip)
+void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect destinationRect)
 {
-    SDL_RenderCopyEx(GameSystem::getRenderer(), texture, &sourceRect, &targetRect, 0.0, nullptr, flip);
+    drawTexture(texture, sourceRect, destinationRect, SDL_RendererFlip::SDL_FLIP_NONE);
+};
+
+void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect destinationRect, SDL_RendererFlip flip)
+{
+    SDL_RenderCopyEx(GameSystem::getRenderer(), texture, &sourceRect, &destinationRect, 0.0, nullptr, flip);
 };
 
 void TextureSystem::drawSprite(Sprite* sprite)

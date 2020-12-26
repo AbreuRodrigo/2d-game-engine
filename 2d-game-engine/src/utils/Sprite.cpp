@@ -2,16 +2,16 @@
 #include "../systems/GameSystem.h"
 #include "../systems/AssetSystem.h"
 
-Sprite::Sprite(const char* fileName)
+Sprite::Sprite(const char* textureId)
 {
-    setTexture(fileName);
+    setTexture(textureId);
     sourceRect.x = 0;
     sourceRect.y = 0;
 };
 
-Sprite::Sprite(const char* fileName, int width, int height)
+Sprite::Sprite(const char* textureId, int width, int height)
 {
-    setTexture(fileName, width, height);
+    setTexture(textureId, width, height);
     sourceRect.x = 0;
     sourceRect.y = 0;
 };
@@ -21,17 +21,17 @@ SDL_Texture* Sprite::getTexture() const
     return texture;
 };
 
-void Sprite::setTexture(const char* fileName)
+void Sprite::setTexture(const char* textureId)
 {
-    texture = GameSystem::getAssetSystem()->getTexture(fileName);
+    texture = GameSystem::getTextureAsset(textureId);
     SDL_QueryTexture(texture, &format, nullptr, &width, &height);
     sourceRect.w = width;
     sourceRect.h = height;
 };
 
-void Sprite::setTexture(const char* fileName, int width, int height)
+void Sprite::setTexture(const char* textureId, int width, int height)
 {
-    texture = GameSystem::getAssetSystem()->getTexture(fileName);
+    texture = GameSystem::getTextureAsset(textureId);
     format = SDL_PIXELFORMAT_ARGB8888;
     this->width = sourceRect.w = width;
     this->height = sourceRect.h = height;

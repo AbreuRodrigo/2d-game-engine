@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\gameImplementation\Chopper.cpp" />
     <ClCompile Include="..\src\gameImplementation\Main.cpp" />
+    <ClCompile Include="..\src\gameImplementation\MyGame.cpp" />
     <ClCompile Include="..\src\gameImplementation\Radar.cpp" />
     <ClCompile Include="..\src\gameImplementation\Tank.cpp" />
     <ClCompile Include="..\src\systems\AssetSystem.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="..\src\components\TileRendererComponent.h" />
     <ClInclude Include="..\src\components\TransformComponent.h" />
     <ClInclude Include="..\src\gameImplementation\Chopper.h" />
+    <ClInclude Include="..\src\gameImplementation\MyGame.h" />
     <ClInclude Include="..\src\gameImplementation\Radar.h" />
     <ClInclude Include="..\src\gameImplementation\Tank.h" />
     <ClInclude Include="..\src\systems\AssetSystem.h" />
@@ -56,6 +58,7 @@
     <ClInclude Include="..\src\utils\Color.h" />
     <ClInclude Include="..\src\utils\Component.h" />
     <ClInclude Include="..\src\utils\Entity.h" />
+    <ClInclude Include="..\src\utils\Game.h" />
     <ClInclude Include="..\src\utils\GameRunner.h" />
     <ClInclude Include="..\src\utils\KeyCode.h" />
     <ClInclude Include="..\src\utils\Map.h" />

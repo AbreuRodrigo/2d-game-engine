@@ -13,8 +13,12 @@ class AssetSystem
 private:
     std::map<std::string, SDL_Texture*> textures;
 
-public:
+protected:
     void clearData();
+
+public:
+    ~AssetSystem();
+        
     void addTexture(std::string textureId, const char* filePath);
     SDL_Texture* getTexture(std::string textureId);
 };

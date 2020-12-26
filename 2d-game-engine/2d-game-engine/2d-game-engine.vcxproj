@@ -33,12 +33,14 @@
     <ClCompile Include="..\src\utils\Animation2D.cpp" />
     <ClCompile Include="..\src\utils\Color.cpp" />
     <ClCompile Include="..\src\utils\Entity.cpp" />
+    <ClCompile Include="..\src\utils\Map.cpp" />
     <ClCompile Include="..\src\utils\Sprite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\components\Animator2DComponent.h" />
     <ClInclude Include="..\src\components\RendererComponent.h" />
     <ClInclude Include="..\src\components\SpriteRendererComponent.h" />
+    <ClInclude Include="..\src\components\TileRendererComponent.h" />
     <ClInclude Include="..\src\components\TransformComponent.h" />
     <ClInclude Include="..\src\gameImplementation\Chopper.h" />
     <ClInclude Include="..\src\gameImplementation\Radar.h" />
@@ -56,6 +58,7 @@
     <ClInclude Include="..\src\utils\Entity.h" />
     <ClInclude Include="..\src\utils\GameRunner.h" />
     <ClInclude Include="..\src\utils\KeyCode.h" />
+    <ClInclude Include="..\src\utils\Map.h" />
     <ClInclude Include="..\src\utils\Sprite.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

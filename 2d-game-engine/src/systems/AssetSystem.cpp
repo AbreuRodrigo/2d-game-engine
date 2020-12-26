@@ -1,6 +1,11 @@
 #include "AssetSystem.h"
 #include "TextureSystem.h"
 
+AssetSystem::~AssetSystem()
+{
+    clearData();
+};
+
 void AssetSystem::clearData()
 {
     textures.clear();

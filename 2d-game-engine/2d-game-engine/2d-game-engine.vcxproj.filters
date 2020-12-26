@@ -81,6 +81,9 @@
     <ClCompile Include="..\src\gameImplementation\Main.cpp">
       <Filter>Source Files\GameImplementation</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\utils\Map.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\components\RendererComponent.h">
@@ -145,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="..\src\systems\GameSystem.h">
       <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Map.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\components\TileRendererComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

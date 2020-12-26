@@ -9,14 +9,16 @@
 #include "ScreenSystem.h"
 #include "TimeSystem.h"
 #include "InputSystem.h"
+#include "../utils/Map.h"
+
 
 //Static
 EntitySystem entitySystem;
 
-AssetSystem* GameSystem::assetSystem = new AssetSystem();
+std::unique_ptr<AssetSystem> GameSystem::assetSystem = std::unique_ptr<AssetSystem>(new AssetSystem());
 AssetSystem* GameSystem::getAssetSystem()
 {
-    return assetSystem;
+    return assetSystem.get();
 };
 
 SDL_Renderer* GameSystem::renderer;
@@ -24,6 +26,8 @@ SDL_Renderer* GameSystem::getRenderer()
 {
     return renderer;
 };
+
+std::unique_ptr<Map> map;
 
 //Public
 GameSystem::GameSystem() : GameSystem(bgColor)
@@ -44,18 +48,16 @@ GameSystem::GameSystem(int width, int height, Color bgColor, const char* screenT
     this->screenTitle = screenTitle;
 };
 
-GameSystem::~GameSystem()
-{
-    assetSystem->clearData();
-    delete assetSystem;
-};
-
 //Engine Methods
 void GameSystem::loadLevel(int levelIndex)
-{
+{    
     assetSystem->addTexture("tankImage", std::string("../assets/images/tank-big-right.png").c_str());
     assetSystem->addTexture("chopperImage", std::string("../assets/images/chopper-spritesheet.png").c_str());
     assetSystem->addTexture("radarImage", std::string("../assets/images/radar.png").c_str());
+    assetSystem->addTexture("jungleTileTexture", std::string("../assets/tilemaps/jungle.png").c_str());
+
+    map = std::unique_ptr<Map>(new Map("jungleTileTexture", 2, 32));
+    map->loadMap("../assets/tilemaps/jungle.map", 25, 20);// TODO change this once we have configs
 
     entitySystem.createEntity<Tank>("Tank");
     entitySystem.createEntity<Chopper>("Chopper");

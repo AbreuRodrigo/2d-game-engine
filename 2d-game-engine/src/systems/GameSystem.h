@@ -14,7 +14,6 @@ public:
     GameSystem();
     GameSystem(Color bgColor);
     GameSystem(int width, int height, Color bgColor, const char* screenTitle);
-    ~GameSystem();
 
     static AssetSystem* getAssetSystem();
     static SDL_Renderer* getRenderer();
@@ -33,7 +32,7 @@ protected:
 
     //Components    
     SDL_Window* window;
-    static AssetSystem* assetSystem;
+    static std::unique_ptr<AssetSystem> assetSystem;
     static SDL_Renderer* renderer;
 
     //Engine Methods

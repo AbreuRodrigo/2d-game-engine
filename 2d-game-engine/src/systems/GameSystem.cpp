@@ -4,19 +4,31 @@
 #include "GameSystem.h"
 #include "AssetSystem.h"
 #include "EntitySystem.h"
+#include "LayerSystem.h"
 #include "ScreenSystem.h"
 #include "TimeSystem.h"
 #include "InputSystem.h"
 #include "../utils/Map.h"
 
 //Static
-std::unique_ptr<EntitySystem> GameSystem::entitySystem(new EntitySystem());
 std::unique_ptr<AssetSystem> GameSystem::assetSystem(new AssetSystem());
+std::unique_ptr<EntitySystem> GameSystem::entitySystem(new EntitySystem());
+std::unique_ptr<LayerSystem> GameSystem::layerSystem(new LayerSystem());
 
 SDL_Renderer* GameSystem::renderer;
 SDL_Renderer* GameSystem::getRenderer()
 {
     return renderer;
+};
+
+Layer* GameSystem::createLayer(std::string layerLabel)
+{
+    return layerSystem->createLayer(layerLabel);
+};
+
+std::vector<Layer*> GameSystem::listLayers()
+{
+    return layerSystem->listLayers();
 };
 
 void GameSystem::loadTextureAsset(std::string textureId, std::string texturePath)
@@ -40,15 +52,22 @@ void GameSystem::initialize()
 
     TimeSystem::initializeTime();
     ScreenSystem::setSize(gameInstance->windowWidth, gameInstance->windowHeight);
-
+        
     if (this->window != nullptr && this->renderer != nullptr)
     {
         std::cout << "Game running!" << std::endl;
 
+        layerSystem->createLayer(LayerLabel::TILEMAP);
+        layerSystem->createLayer(LayerLabel::DEFAULT);
+        
         gameInstance->isRunning = true;
-        gameInstance->start();
+        gameInstance->onStart();
 
-        gameInstance->loadLevel(0);
+        layerSystem->createLayer(LayerLabel::GUI);
+
+        gameInstance->onLevelLoaded(0);
+
+        entitySystem->sortEntities(layerSystem.get());
 
         while (gameInstance->isRunning)
         {
@@ -70,6 +89,7 @@ void GameSystem::destroy()
     SDL_Quit();
 
     gameInstance->isRunning = false;
+    gameInstance->onDestroy();
 
     this->~GameSystem();
 };

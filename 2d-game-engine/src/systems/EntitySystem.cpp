@@ -1,59 +1,98 @@
 #include <iostream>
 #include "EntitySystem.h"
+#include "LayerSystem.h"
+
+EntitySystem::~EntitySystem()
+{
+    clearData();
+};
 
 void EntitySystem::clearData()
 {
-    for (auto& entity : entities)
+    for (auto& element : entitiesMap)
     {
-        entity->destroy();
+        for (auto& entity : element.second)
+        {
+            entity->destroy();
+        }
     }
+
+    entitiesMap.clear();
+    entitiesList.clear();
 };
 
 bool EntitySystem::hasNoEntities()
 {
-    return entities.size() == 0;
+    return entitiesMap.size() == 0;
+};
+
+void EntitySystem::sortEntities(LayerSystem* layerSystem)
+{
+    if (layerSystem != nullptr)
+    {
+        entitiesList.clear();
+
+        for (auto& layer : layerSystem->listLayers())
+        {
+            auto entities = entitiesMap.find(layer->getLabel());
+
+            if (entities != entitiesMap.end())
+            {
+                entitiesList.emplace_back(entities->second);
+            }
+        }
+    }
 };
 
 void EntitySystem::update()
 {
-    for (auto& entity : entities)
+    for (auto& element : entitiesList)
     {
-        if (entity->active)
+        for (auto& entity : element)
         {
-            entity->update();
+            if (entity->active)
+            {
+                entity->update();
+            }
         }
     }
 };
 
 void EntitySystem::render()
 {
-    for (auto& entity : entities)
+    for (auto& element : entitiesList)
     {
-        if (entity->active)
+        for (auto& entity : element)
         {
-            entity->render();
+            if (entity->active)
+            {
+                entity->render();
+            }
         }
     }
 };
 
-std::vector<Entity*> EntitySystem::getEntities() const
+EntityList EntitySystem::getEntities(std::string layerLabel) const
 {
-    return entities;
+    return entitiesMap.at(layerLabel);
 };
 
 unsigned int EntitySystem::getEntityCount()
 {
-    return static_cast<int>(entities.size());
+    return static_cast<int>(entitiesMap.size());
 };
 
 void EntitySystem::listAllEntities() const
 {
     unsigned int i = 0;
 
-    for (auto& entity : entities)
+    for (auto& element : entitiesMap)
     {
-        std::cout << "Entity[" << i << "]: " << entity->name << std::endl;
-        entity->listAllComponents();
-        i++;
+        for (auto& entity : element.second)
+        {
+            std::cout << "Entity[" << i << "]: " << entity->name << std::endl;
+            entity->listAllComponents();
+            i++;
+        }
     }
 };

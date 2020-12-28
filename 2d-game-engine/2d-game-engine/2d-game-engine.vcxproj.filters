@@ -87,6 +87,12 @@
     <ClCompile Include="..\src\gameImplementation\MyGame.cpp">
       <Filter>Source Files\GameImplementation</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\utils\Layer.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\systems\LayerSystem.cpp">
+      <Filter>Source Files\Systems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\components\RendererComponent.h">
@@ -163,6 +169,18 @@
     </ClInclude>
     <ClInclude Include="..\src\gameImplementation\MyGame.h">
       <Filter>Header Files\GameImplementation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\Layer.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\systems\LayerSystem.h">
+      <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\InternalConstants.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\InternalTypes.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

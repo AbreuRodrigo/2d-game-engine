@@ -5,9 +5,12 @@
 #include "../utils/Color.h"
 #include "AssetSystem.h"
 #include "EntitySystem.h"
+#include "LayerSystem.h"
+#include "../utils/InternalConstants.h"
 
 class AssetSystem;
 class EntitySystem;
+class LayerSystem;
 class Game;
 class TimeSystem;
 
@@ -31,6 +34,8 @@ protected:
 
     static std::unique_ptr<AssetSystem> assetSystem;
     static std::unique_ptr<EntitySystem> entitySystem;
+    static std::unique_ptr<LayerSystem> layerSystem;
+    
     static SDL_Renderer* renderer;
 
     //Engine Methods
@@ -42,13 +47,26 @@ protected:
 public:
     GameSystem(Game* gameInstance);
 
+    // LayerSystem Wrapper
+    static Layer* createLayer(std::string layerLabel);
+    static std::vector<Layer*> listLayers();
+
+    // EntitySystem Wrapper
     template <typename T>
     static T& createEntity(std::string entityName)
     {
-        return entitySystem->createEntity<T>(entityName);
+        return createEntity<T>(entityName, LayerLabel::DEFAULT);
     };
 
-    static SDL_Renderer* getRenderer();
+    template <typename T>
+    static T& createEntity(std::string entityName, std::string layerLabel)
+    {
+        return entitySystem->createEntity<T>(entityName, layerLabel);
+    };
+
+    // AssetSystem Wrapper
     static void loadTextureAsset(std::string textureId, std::string texturePath);
     static SDL_Texture* getTextureAsset(std::string textureId);
+
+    static SDL_Renderer* getRenderer();
 };

@@ -38,6 +38,6 @@ void Map::loadMap(std::string filePath, int mapSizeX, int mapSizeY)
 
 void Map::addTile(int sourceRectX, int sourceRectY, int x, int y)
 {
-    Entity& tile(GameSystem::createEntity<Entity>("Tile"));
+    Entity& tile(GameSystem::createEntity<Entity>("Tile", LayerLabel::TILEMAP));
     tile.addComponent<TileRendererComponent>(sourceRectX, sourceRectY, x, y, tileSize, scale, textureId);
 };

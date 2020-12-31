@@ -26,6 +26,7 @@
     <ClCompile Include="..\src\gameImplementation\Tank.cpp" />
     <ClCompile Include="..\src\systems\AssetSystem.cpp" />
     <ClCompile Include="..\src\systems\Camera2DSystem.cpp" />
+    <ClCompile Include="..\src\systems\CollisionSystem.cpp" />
     <ClCompile Include="..\src\systems\EntitySystem.cpp" />
     <ClCompile Include="..\src\systems\GameSystem.cpp" />
     <ClCompile Include="..\src\systems\InputSystem.cpp" />
@@ -34,11 +35,13 @@
     <ClCompile Include="..\src\systems\TextureSystem.cpp" />
     <ClCompile Include="..\src\systems\TimeSystem.cpp" />
     <ClCompile Include="..\src\utils\Animation2D.cpp" />
+    <ClCompile Include="..\src\utils\BoundingBox.cpp" />
     <ClCompile Include="..\src\utils\Color.cpp" />
     <ClCompile Include="..\src\utils\Entity.cpp" />
     <ClCompile Include="..\src\utils\Layer.cpp" />
     <ClCompile Include="..\src\utils\Map.cpp" />
     <ClCompile Include="..\src\utils\Sprite.cpp" />
+    <ClCompile Include="..\src\utils\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\components\Animator2DComponent.h" />
@@ -52,6 +55,7 @@
     <ClInclude Include="..\src\gameImplementation\Tank.h" />
     <ClInclude Include="..\src\systems\AssetSystem.h" />
     <ClInclude Include="..\src\systems\Camera2DSystem.h" />
+    <ClInclude Include="..\src\systems\CollisionSystem.h" />
     <ClInclude Include="..\src\systems\EntitySystem.h" />
     <ClInclude Include="..\src\systems\GameSystem.h" />
     <ClInclude Include="..\src\systems\InputSystem.h" />
@@ -60,6 +64,7 @@
     <ClInclude Include="..\src\systems\TextureSystem.h" />
     <ClInclude Include="..\src\systems\TimeSystem.h" />
     <ClInclude Include="..\src\utils\Animation2D.h" />
+    <ClInclude Include="..\src\utils\BoundingBox.h" />
     <ClInclude Include="..\src\utils\Color.h" />
     <ClInclude Include="..\src\utils\Component.h" />
     <ClInclude Include="..\src\utils\Entity.h" />
@@ -71,6 +76,7 @@
     <ClInclude Include="..\src\utils\Layer.h" />
     <ClInclude Include="..\src\utils\Map.h" />
     <ClInclude Include="..\src\utils\Sprite.h" />
+    <ClInclude Include="..\src\utils\Vector2D.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

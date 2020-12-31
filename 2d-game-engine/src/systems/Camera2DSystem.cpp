@@ -18,8 +18,8 @@ void Camera2DSystem::update(float x, float y)
     Camera2DSystem::camera.x = static_cast<int>(x - ScreenSystem::getMiddleCenter().x);
     Camera2DSystem::camera.y = static_cast<int>(y - ScreenSystem::getMiddleCenter().y);
 
-    int limitX = ScreenSystem::getMiddleCenter().x;
-    int limitY = ScreenSystem::getMiddleCenter().y;
+    int limitX = static_cast<int>(ScreenSystem::getMiddleCenter().x);
+    int limitY = static_cast<int>(ScreenSystem::getMiddleCenter().y);
 
     Camera2DSystem::camera.x = Camera2DSystem::camera.x < 0 ? 0 : Camera2DSystem::camera.x;
     Camera2DSystem::camera.y = Camera2DSystem::camera.y < 0 ? 0 : Camera2DSystem::camera.y;

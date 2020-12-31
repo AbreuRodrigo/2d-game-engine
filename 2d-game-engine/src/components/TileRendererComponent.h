@@ -28,8 +28,6 @@ public:
     {
         texture = GameSystem::getTextureAsset(textureId);
 
-        this->size.x = static_cast<float>(sourceRectX);
-        this->size.y = static_cast<float>(sourceRectY);
         this->color = color;
 
         sourceRect.x = sourceRectX;

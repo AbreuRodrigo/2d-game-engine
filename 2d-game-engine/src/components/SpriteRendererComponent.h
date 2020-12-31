@@ -19,24 +19,24 @@ public:
     SpriteRendererComponent(const char* spriteFileName, bool isStatic = false)
     {
         this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, isStatic));
-        this->size.x = static_cast<float>(this->sourceRect.w = this->sprite->getWidth());
-        this->size.y = static_cast<float>(this->sourceRect.h = this->sprite->getHeight());
+        this->sourceRect.w = this->sprite->getWidth();
+        this->sourceRect.h = this->sprite->getHeight();
         this->color = Color::white;
     };
 
     SpriteRendererComponent(const char* spriteFileName, int width, int height, bool isStatic = false)
     {
         this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, width, height, isStatic));
-        this->size.x = static_cast<float>(this->sourceRect.w = this->sprite->getWidth());
-        this->size.y = static_cast<float>(this->sourceRect.h = this->sprite->getHeight());
+        this->sourceRect.w = this->sprite->getWidth();
+        this->sourceRect.h = this->sprite->getHeight();
         this->color = Color::white;
     };
 
     SpriteRendererComponent(const char* spriteFileName, const Color color, bool isStatic = false)
     {
         this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, isStatic));
-        this->size.x = static_cast<float>(this->sourceRect.w = this->sprite->getWidth());
-        this->size.y = static_cast<float>(this->sourceRect.h = this->sprite->getHeight());
+        this->sourceRect.w = this->sprite->getWidth();
+        this->sourceRect.h = this->sprite->getHeight();
         this->color = color;
     };
 

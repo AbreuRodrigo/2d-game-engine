@@ -11,6 +11,7 @@ public:
 
     virtual void onStart();
     virtual void onLevelLoaded(int levelIndex);
+    virtual void onUpdate();
     virtual void onDestroy();
 };
 

@@ -7,11 +7,13 @@
 #include "../systems/LayerSystem.h"
 #include "../utils/Map.h"
 
-std::unique_ptr<Map> map;
 
 MyGame::MyGame() : Game::Game() { };
 MyGame::MyGame(Color bgColor) : Game::Game(bgColor) { };
 MyGame::MyGame(int width, int height, Color bgColor, const char* screenTitle) : Game::Game(width, height, bgColor, screenTitle) { };
+
+Chopper* player;
+std::unique_ptr<Map> map;
 
 void MyGame::onStart()
 {
@@ -28,12 +30,25 @@ void MyGame::onStart()
 
 void MyGame::onLevelLoaded(int levelIndex)
 {
-    map = std::unique_ptr<Map>(new Map("JungleTileTexture", 2, 32));
-    map->loadMap("../assets/tilemaps/jungle.map", 25, 20);// TODO change this once we have configs
+    int mapZoom = 2;
 
-    GameSystem::createEntity<Tank>("Tank");
-    GameSystem::createEntity<Chopper>("Chopper");
-    GameSystem::createEntity<Radar>("Radar");
+    map = std::unique_ptr<Map>(new Map("JungleTileTexture", mapZoom, 32));
+    map->loadMap("../assets/tilemaps/jungle.map", 35, 20);// TODO change this once we have configs
+
+    player = &GameSystem::createEntity<Chopper>("Chopper", LayerLabel::PLAYER);
+
+    GameSystem::createEntity<Tank>("Tank", LayerLabel::ENEMY);
+    GameSystem::createEntity<Radar>("Radar", LayerLabel::GUI);
+
+    GameSystem::initializeCamera(map->getWidth(), map->getHeight());
+};
+
+void MyGame::onUpdate()
+{
+    if (player != nullptr)
+    {
+        GameSystem::cameraFollowsEntity(player);
+    }
 };
 
 void MyGame::onDestroy()

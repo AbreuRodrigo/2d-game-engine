@@ -25,6 +25,7 @@
     <ClCompile Include="..\src\gameImplementation\Radar.cpp" />
     <ClCompile Include="..\src\gameImplementation\Tank.cpp" />
     <ClCompile Include="..\src\systems\AssetSystem.cpp" />
+    <ClCompile Include="..\src\systems\Camera2DSystem.cpp" />
     <ClCompile Include="..\src\systems\EntitySystem.cpp" />
     <ClCompile Include="..\src\systems\GameSystem.cpp" />
     <ClCompile Include="..\src\systems\InputSystem.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="..\src\gameImplementation\Radar.h" />
     <ClInclude Include="..\src\gameImplementation\Tank.h" />
     <ClInclude Include="..\src\systems\AssetSystem.h" />
+    <ClInclude Include="..\src\systems\Camera2DSystem.h" />
     <ClInclude Include="..\src\systems\EntitySystem.h" />
     <ClInclude Include="..\src\systems\GameSystem.h" />
     <ClInclude Include="..\src\systems\InputSystem.h" />

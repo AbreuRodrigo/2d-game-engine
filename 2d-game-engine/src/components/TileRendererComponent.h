@@ -3,10 +3,12 @@
 #include <SDL.h>
 #include <glm.hpp>
 #include "../systems/AssetSystem.h"
+#include "../systems/Camera2DSystem.h"
 #include "../systems/EntitySystem.h"
 #include "../systems/GameSystem.h"
 #include "../systems/TextureSystem.h"
 #include "../utils/Color.h"
+#include "../utils/Entity.h"
 
 class AssetSystem;
 class GameSystem;
@@ -15,9 +17,6 @@ class TileRendererComponent : public RendererComponent
 {
 protected:
     SDL_Texture* texture;
-    SDL_Rect sourceRect;
-    SDL_Rect destinationRect;
-    glm::vec2 position;
 
 public:
     TileRendererComponent(int sourceRectX, int sourceRectY, int x, int y, int tileSize, int tileScale, std::string textureId) : 
@@ -42,9 +41,6 @@ public:
         destinationRect.y = y;
         destinationRect.w = tileSize * tileScale;
         destinationRect.h = tileSize * tileScale;
-
-        position.x = static_cast<float>(x);
-        position.y = static_cast<float>(y);
     };
 
     ~TileRendererComponent()
@@ -54,6 +50,9 @@ public:
 
     void render() override
     {
+        destinationRect.x = static_cast<int>(parent->transform->position.x - Camera2DSystem::getX());
+        destinationRect.y = static_cast<int>(parent->transform->position.y - Camera2DSystem::getY());
+
         TextureSystem::drawTexture(texture, sourceRect, destinationRect);
     };
 };

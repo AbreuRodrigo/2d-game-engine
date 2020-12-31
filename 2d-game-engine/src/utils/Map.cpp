@@ -11,8 +11,16 @@ Map::Map(std::string textureId, int scale, int tileSize)
     this->tileSize = tileSize;
 };
 
-Map::~Map()
+Map::~Map() { };
+
+int Map::getWidth()
 {
+    return width;
+};
+
+int Map::getHeight()
+{
+    return height;
 };
 
 void Map::loadMap(std::string filePath, int mapSizeX, int mapSizeY)
@@ -34,10 +42,14 @@ void Map::loadMap(std::string filePath, int mapSizeX, int mapSizeY)
             mapFile.ignore(); // To avoid reading the comma in the map file
         };
     };
+
+    width = mapSizeX * scale * tileSize;
+    height = mapSizeY * scale * tileSize;
 };
 
 void Map::addTile(int sourceRectX, int sourceRectY, int x, int y)
 {
     Entity& tile(GameSystem::createEntity<Entity>("Tile", LayerLabel::TILEMAP));
+    tile.addComponent<TransformComponent>(static_cast<float>(x), static_cast<float>(y));
     tile.addComponent<TileRendererComponent>(sourceRectX, sourceRectY, x, y, tileSize, scale, textureId);
 };

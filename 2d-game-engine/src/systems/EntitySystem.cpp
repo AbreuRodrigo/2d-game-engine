@@ -13,7 +13,7 @@ void EntitySystem::clearData()
     {
         for (auto& entity : element.second)
         {
-            entity->destroy();
+            entity->destroy();            
         }
     }
 

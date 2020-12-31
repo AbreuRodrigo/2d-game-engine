@@ -8,6 +8,11 @@ AssetSystem::~AssetSystem()
 
 void AssetSystem::clearData()
 {
+    for (auto& texture : textures)
+    {
+        SDL_DestroyTexture(texture.second);
+    }
+
     textures.clear();
 };
 
@@ -19,4 +24,4 @@ void AssetSystem::addTexture(std::string textureId, const char* filePath)
 SDL_Texture* AssetSystem::getTexture(std::string textureId)
 {
     return textures[textureId];
-}; 
+};

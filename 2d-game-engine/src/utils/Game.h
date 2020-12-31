@@ -36,4 +36,5 @@ public:
     virtual void onStart() = 0;
     virtual void onLevelLoaded(int levelIndex) = 0;
     virtual void onDestroy() = 0;
+    virtual void onUpdate() = 0;
 };

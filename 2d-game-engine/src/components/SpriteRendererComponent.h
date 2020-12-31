@@ -13,36 +13,35 @@ class TextureSystem;
 class SpriteRendererComponent : public RendererComponent
 {
 private:
-    Sprite* sprite = nullptr;
+    std::unique_ptr<Sprite> sprite;
 
 public:
-    SpriteRendererComponent(const char* spriteFileName)
+    SpriteRendererComponent(const char* spriteFileName, bool isStatic = false)
     {
-        this->sprite = new Sprite(spriteFileName);
-        this->size.x = static_cast<float>(sprite->getSourceRect().x);
-        this->size.y = static_cast<float>(sprite->getSourceRect().y);
+        this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, isStatic));
+        this->size.x = static_cast<float>(this->sourceRect.w = this->sprite->getWidth());
+        this->size.y = static_cast<float>(this->sourceRect.h = this->sprite->getHeight());
         this->color = Color::white;
     };
 
-    SpriteRendererComponent(const char* spriteFileName, int width, int height)
+    SpriteRendererComponent(const char* spriteFileName, int width, int height, bool isStatic = false)
     {
-        this->sprite = new Sprite(spriteFileName, width, height);
-        this->size.x = static_cast<float>(sprite->getSourceRect().x);
-        this->size.y = static_cast<float>(sprite->getSourceRect().y);
+        this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, width, height, isStatic));
+        this->size.x = static_cast<float>(this->sourceRect.w = this->sprite->getWidth());
+        this->size.y = static_cast<float>(this->sourceRect.h = this->sprite->getHeight());
         this->color = Color::white;
     };
 
-    SpriteRendererComponent(const char* spriteFileName, const Color color)
+    SpriteRendererComponent(const char* spriteFileName, const Color color, bool isStatic = false)
     {
-        this->sprite = new Sprite(spriteFileName);
-        this->size.x = static_cast<float>(sprite->getSourceRect().x);
-        this->size.y = static_cast<float>(sprite->getSourceRect().y);
+        this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, isStatic));
+        this->size.x = static_cast<float>(this->sourceRect.w = this->sprite->getWidth());
+        this->size.y = static_cast<float>(this->sourceRect.h = this->sprite->getHeight());
         this->color = color;
     };
 
     ~SpriteRendererComponent()
     {
-        delete sprite;
     };
 
     void setSpriteTexture(const char* spriteFileName)
@@ -52,7 +51,12 @@ public:
 
     void render() override
     {
-        sprite->update(parent->getComponent<TransformComponent>(), parent->getComponent<Animator2DComponent>());
-        TextureSystem::drawSprite(sprite);
+        if (!sprite->isInitialized)
+        {
+            sprite->initialize(this);
+        }
+
+        sprite->update();
+        TextureSystem::drawSprite(sprite.get());
     };
 };

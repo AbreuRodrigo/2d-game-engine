@@ -41,8 +41,26 @@ SDL_Texture* GameSystem::getTextureAsset(std::string textureId)
     return assetSystem->getTexture(textureId);
 };
 
+void GameSystem::initializeCamera(int xLimit, int yLimit)
+{
+    Camera2DSystem::initialize(xLimit, yLimit);
+};
+
+void GameSystem::updateCamera(float x, float y)
+{
+    Camera2DSystem::update(x, y);
+};
+
+void GameSystem::cameraFollowsEntity(Entity* entity)
+{
+    //Camera2DSystem::update(entity->transform->position.x + entity->renderer->size.x * .5f, entity->transform->position.y + entity->renderer->size.y * .5f);
+    Camera2DSystem::update(entity->transform->position.x, entity->transform->position.y);
+};
+
 //Public
-GameSystem::GameSystem(Game* gameInstance) : gameInstance(gameInstance), window(nullptr) { };
+GameSystem::GameSystem(Game* gameInstance) : gameInstance(gameInstance), window(nullptr)
+{
+};
 
 void GameSystem::initialize()
 {
@@ -106,6 +124,7 @@ void GameSystem::update()
 {
     TimeSystem::update();
     entitySystem->update();
+    gameInstance->onUpdate();
 };
 
 void GameSystem::render()

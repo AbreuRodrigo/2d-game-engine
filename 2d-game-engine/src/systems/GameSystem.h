@@ -4,14 +4,16 @@
 #include "../utils/Game.h"
 #include "../utils/Color.h"
 #include "AssetSystem.h"
+#include "Camera2DSystem.h"
 #include "EntitySystem.h"
 #include "LayerSystem.h"
 #include "../utils/InternalConstants.h"
 
 class AssetSystem;
+class Camera2DSystem;
 class EntitySystem;
-class LayerSystem;
 class Game;
+class LayerSystem;
 class TimeSystem;
 
 class GameSystem
@@ -37,19 +39,23 @@ protected:
     static std::unique_ptr<LayerSystem> layerSystem;
     
     static SDL_Renderer* renderer;
-
+            
     //Engine Methods
     void processInput();
-    void update();
+    void update();    
     void render();
     void destroy();
 
 public:
-    GameSystem(Game* gameInstance);
-
+    GameSystem(Game* gameInstance);        
+        
     // LayerSystem Wrapper
     static Layer* createLayer(std::string layerLabel);
     static std::vector<Layer*> listLayers();
+
+    static void initializeCamera(int xLimit, int yLimit);
+    static void updateCamera(float x, float y);
+    static void cameraFollowsEntity(Entity* entity);
 
     // EntitySystem Wrapper
     template <typename T>

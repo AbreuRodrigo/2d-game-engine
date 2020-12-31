@@ -6,9 +6,9 @@ Chopper::Chopper(EntitySystem& entitySystem, std::string name) : Entity::Entity(
 
 void Chopper::initialize()
 {
-    transform = &this->addComponent<TransformComponent>(ScreenSystem::getMiddleCenter().x - 16, ScreenSystem::getTopCenter().y, 0.f, 0.f);
+    transform = &this->addComponent<TransformComponent>(ScreenSystem::getMiddleCenter().x - 16, ScreenSystem::getTopCenter().y);
     spriteRenderer = &this->addComponent<SpriteRendererComponent>("ChopperImage", 32, 32);
-    animator2D = &this->addComponent<Animator2DComponent>(2, 75, false, true);
+    animator2D = &this->addComponent<Animator2DComponent>(2, 100, false, true);
 };
 
 void Chopper::update()

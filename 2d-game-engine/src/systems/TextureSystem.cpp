@@ -24,5 +24,5 @@ void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_R
 
 void TextureSystem::drawSprite(Sprite* sprite)
 {
-    drawTexture(sprite->getTexture(), sprite->getSourceRect(), sprite->getTargetRect(), sprite->getRendererFlip());
+    drawTexture(sprite->getTexture(), sprite->getSourceRect(), sprite->getDestinationRect(), sprite->getRendererFlip());
 };

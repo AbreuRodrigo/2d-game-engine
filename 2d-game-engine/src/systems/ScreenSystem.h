@@ -8,7 +8,7 @@ class ScreenSystem
 {
 public:
     static int getWidth();
-    static int getHeight();
+    static int getHeight();    
 
     static glm::vec2 getTopLeft();
     static glm::vec2 getTopCenter();

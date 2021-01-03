@@ -51,5 +51,5 @@ void Map::addTile(int sourceRectX, int sourceRectY, int x, int y)
 {
     Entity& tile(GameSystem::createEntity<Entity>("Tile", LayerLabel::TILEMAP));
     tile.addComponent<TransformComponent>(static_cast<float>(x), static_cast<float>(y));
-    tile.addComponent<TileRendererComponent>(sourceRectX, sourceRectY, x, y, tileSize, scale, textureId);
+    tile.addComponent<TileRendererComponent>(sourceRectX, sourceRectY, tileSize, scale, textureId);
 };

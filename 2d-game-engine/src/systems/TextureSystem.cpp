@@ -21,8 +21,3 @@ void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_R
 {
     SDL_RenderCopyEx(GameSystem::getRenderer(), texture, &sourceRect, &destinationRect, 0.0, nullptr, flip);
 };
-
-void TextureSystem::drawSprite(Sprite* sprite)
-{
-    drawTexture(sprite->getTexture(), sprite->getSourceRect(), sprite->getDestinationRect(), sprite->getRendererFlip());
-};

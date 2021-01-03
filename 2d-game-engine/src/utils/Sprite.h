@@ -1,9 +1,9 @@
 #pragma once
 
-#include <SDL.h>
 #include "../components/Animator2DComponent.h"
 #include "../components/RendererComponent.h"
 #include "../components/TransformComponent.h"
+#include "../utils/BoundingBox2D.h"
 
 class AssetSystem;
 class GameSystem;
@@ -13,8 +13,8 @@ class Sprite
 private:
     friend class SpriteRendererComponent;
 
-    RendererComponent* parentRenderer = nullptr;
     Animator2DComponent* parentAnimator2d = nullptr;
+    RendererComponent* parentRenderer = nullptr;
 
     SDL_Texture* texture = nullptr;
     SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE;
@@ -34,8 +34,7 @@ public:
     SDL_Texture* getTexture() const;
     void setTexture(const char* textureId);
     void setTexture(const char* textureId, int width, int height);
-    SDL_Rect getSourceRect() const;
-    SDL_Rect getDestinationRect() const;
+    BoundingBox2D getBoundingBox() const;
     SDL_RendererFlip getRendererFlip();
     void initialize(RendererComponent* parentRenderer);
 };

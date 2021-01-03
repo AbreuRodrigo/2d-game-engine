@@ -44,14 +44,9 @@ void Sprite::setTexture(const char* textureId, int width, int height)
     this->height = height;
 };
 
-SDL_Rect Sprite::getSourceRect() const
+BoundingBox2D Sprite::getBoundingBox() const
 {
-    return parentRenderer->sourceRect;
-};
-
-SDL_Rect Sprite::getDestinationRect() const
-{
-    return parentRenderer->destinationRect;
+    return parentRenderer->boundingBox;
 };
 
 SDL_RendererFlip Sprite::getRendererFlip()
@@ -73,16 +68,11 @@ void Sprite::update()
 {
     if (parentAnimator2d != nullptr)
     {
-        parentRenderer->sourceRect.x = (parentRenderer->sourceRect.w * (SDL_GetTicks() / parentAnimator2d->getSpeed() % parentAnimator2d->getFrames()));
-        parentRenderer->sourceRect.y = parentAnimator2d->getIndex() * this->height;
+        parentRenderer->boundingBox.x = (parentRenderer->boundingBox.width * (SDL_GetTicks() / parentAnimator2d->getSpeed() % parentAnimator2d->getFrames()));
+        parentRenderer->boundingBox.y = parentAnimator2d->getIndex() * this->height;
     }
     else
     {
-        parentRenderer->sourceRect.y = 0 * this->height;
+        parentRenderer->boundingBox.y = 0 * this->height;
     }
-
-    parentRenderer->destinationRect.x = static_cast<int>(parentRenderer->parent->transform->position.x) - (isStatic ? 0 : Camera2DSystem::getX());
-    parentRenderer->destinationRect.y = static_cast<int>(parentRenderer->parent->transform->position.y) - (isStatic ? 0 : Camera2DSystem::getY());
-    parentRenderer->destinationRect.w = static_cast<int>(width * parentRenderer->parent->transform->scale.x);
-    parentRenderer->destinationRect.h = static_cast<int>(height * parentRenderer->parent->transform->scale.y);
 };

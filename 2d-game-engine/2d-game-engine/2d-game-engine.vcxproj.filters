@@ -96,14 +96,14 @@
     <ClCompile Include="..\src\systems\Camera2DSystem.cpp">
       <Filter>Source Files\Systems</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\utils\BoundingBox.cpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\utils\Vector2D.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="..\src\systems\CollisionSystem.cpp">
       <Filter>Source Files\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\BoundingBox2D.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,14 +197,14 @@
     <ClInclude Include="..\src\systems\Camera2DSystem.h">
       <Filter>Header Files\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\utils\BoundingBox.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\utils\Vector2D.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="..\src\systems\CollisionSystem.h">
       <Filter>Header Files\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\utils\BoundingBox2D.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

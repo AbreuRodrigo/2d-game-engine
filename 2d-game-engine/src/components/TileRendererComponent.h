@@ -17,28 +17,28 @@ class TileRendererComponent : public RendererComponent
 {
 protected:
     SDL_Texture* texture;
+    int tileSize;
+    int tileScale;
 
 public:
-    TileRendererComponent(int sourceRectX, int sourceRectY, int x, int y, int tileSize, int tileScale, std::string textureId) : 
-        TileRendererComponent(sourceRectX, sourceRectY, x, y, tileSize, tileScale, textureId, Color::white)
+    TileRendererComponent(int sourceRectX, int sourceRectY, int tileSize, int tileScale, std::string textureId) : 
+        TileRendererComponent(sourceRectX, sourceRectY, tileSize, tileScale, textureId, Color::white)
     {        
     };
 
-    TileRendererComponent(int sourceRectX, int sourceRectY, int x, int y, int tileSize, int tileScale, std::string textureId, const Color color)
+    TileRendererComponent(int sourceRectX, int sourceRectY, int tileSize, int tileScale, std::string textureId, const Color color)
     {
         texture = GameSystem::getTextureAsset(textureId);
 
         this->color = color;
 
-        sourceRect.x = sourceRectX;
-        sourceRect.y = sourceRectY;
-        sourceRect.w = tileSize;
-        sourceRect.h = tileSize;
+        boundingBox.x = sourceRectX;
+        boundingBox.y = sourceRectY;
+        boundingBox.width = tileSize;
+        boundingBox.height = tileSize;
 
-        destinationRect.x = x;
-        destinationRect.y = y;
-        destinationRect.w = tileSize * tileScale;
-        destinationRect.h = tileSize * tileScale;
+        this->tileSize = tileSize;
+        this->tileScale = tileScale;
     };
 
     ~TileRendererComponent()
@@ -48,9 +48,12 @@ public:
 
     void render() override
     {
-        destinationRect.x = static_cast<int>(parent->transform->position.x - Camera2DSystem::getX());
-        destinationRect.y = static_cast<int>(parent->transform->position.y - Camera2DSystem::getY());
+        SDL_Rect rect;
+        rect.x = static_cast<int>(parent->transform->position.x - Camera2DSystem::getX());
+        rect.y = static_cast<int>(parent->transform->position.y - Camera2DSystem::getY());
+        rect.w = tileSize * tileScale;
+        rect.h = tileSize * tileScale;
 
-        TextureSystem::drawTexture(texture, sourceRect, destinationRect);
+        TextureSystem::drawTexture(texture, boundingBox.getRect(), rect);
     };
 };

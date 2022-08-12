@@ -62,6 +62,13 @@ public:
 
         if (renderer == nullptr) {
             renderer = dynamic_cast<RendererComponent*>(component);
+
+            //if (renderer != nullptr) {
+            //    float halfWidth = renderer->sourceRect.w * 0.5f;
+            //    float halfHeight = renderer->sourceRect.h * 0.5f;
+            //    transform->position = glm::vec2(ScreenSystem::getMiddleCenter().x - halfWidth,
+            //        ScreenSystem::getMiddleCenter().y + halfHeight);
+            //}
         }
 
         return *component;

@@ -25,10 +25,10 @@ public:
         this->fixed = fixed;
 
         if (hasDirections) {
-            Animation2D downAnimation = Animation2D(0, frames, speed);
+            Animation2D upAnimation = Animation2D(0, frames, speed);
             Animation2D rightAnimation = Animation2D(1, frames, speed);
-            Animation2D leftAnimation = Animation2D(2, frames, speed);
-            Animation2D upAnimation = Animation2D(3, frames, speed);
+            Animation2D downAnimation = Animation2D(2, frames, speed);
+            Animation2D leftAnimation = Animation2D(3, frames, speed);
 
             animations.emplace("DownAnimation", downAnimation);
             animations.emplace("RightAnimation", rightAnimation);

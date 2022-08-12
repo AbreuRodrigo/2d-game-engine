@@ -3,7 +3,16 @@
 //---------------------------------------------------------------------------------------------------------------------
 Entity::Entity(EntitySystem& entitySystem, std::string name) : entitySystem(entitySystem), name(name) {
     this->active = true;
-    this->transform = nullptr;
+
+    // Transform will be automatically added to any entity created.
+    // By default, the size of an entity will be considered 1, it might change when/if a renderer is added to it, 
+    // so we'll need to update the transform position to make it centralize according to the visual size.
+    //this->transform = &this->addComponent<TransformComponent>(
+    //    ScreenSystem::getMiddleCenter().x - 16, 
+    //    ScreenSystem::getTopCenter().y
+    //);
+
+    // Renderer will be null by default
     this->renderer = nullptr;
 
     this->initialize();

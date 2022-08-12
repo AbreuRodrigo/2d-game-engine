@@ -8,7 +8,7 @@
 class Chopper : public Entity {
 public:
     Chopper(EntitySystem& entitySystem, std::string name);
-
+    float speed = 50;
 protected:
     Animator2DComponent* animator2D = nullptr;
     SpriteRendererComponent* spriteRenderer = nullptr;
@@ -20,4 +20,3 @@ private:
     float xSpeed = 0;
     float ySpeed = 0;
 };
-

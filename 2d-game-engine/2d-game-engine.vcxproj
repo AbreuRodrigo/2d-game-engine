@@ -78,8 +78,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Projects\SleepyYeti\2d-game-engine\libs;C:\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Projects\SleepyYeti\2d-game-engine\libs\lua;C:\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Projects\SleepyYeti\2dGameEngine\2d-game-engine\libs;C:\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Projects\SleepyYeti\2dGameEngine\2d-game-engine\libs\lua;C:\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -421,6 +421,7 @@ xcopy   "$(SolutionDir)\assets\*.*" "$(SolutionDir)$(Platform)\$(Configuration)\
     <ClInclude Include="src\engine\core\Layer.h" />
     <ClInclude Include="src\engine\core\Map.h" />
     <ClInclude Include="src\engine\core\Sprite.h" />
+    <ClInclude Include="src\engine\core\Texture2D.h" />
     <ClInclude Include="src\engine\core\Vector2D.h" />
     <ClInclude Include="src\engine\gameImplementation\entities\Chopper.h" />
     <ClInclude Include="src\engine\gameImplementation\MyGame.h" />
@@ -586,6 +587,7 @@ xcopy   "$(SolutionDir)\assets\*.*" "$(SolutionDir)$(Platform)\$(Configuration)\
     <ClCompile Include="src\engine\core\Layer.cpp" />
     <ClCompile Include="src\engine\core\Map.cpp" />
     <ClCompile Include="src\engine\core\Sprite.cpp" />
+    <ClCompile Include="src\engine\core\Texture2D.cpp" />
     <ClCompile Include="src\engine\core\Vector2D.cpp" />
     <ClCompile Include="src\engine\gameImplementation\entities\Chopper.cpp" />
     <ClCompile Include="src\engine\gameImplementation\Main.cpp" />

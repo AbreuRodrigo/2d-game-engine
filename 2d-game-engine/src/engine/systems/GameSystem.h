@@ -1,12 +1,16 @@
 #pragma once
 
 #include <SDL.h>
+
 #include "../core/Color.h"
 #include "../core/Game.h"
+#include "../core/Texture2D.h"
+
 #include "AssetSystem.h"
 #include "Camera2DSystem.h"
 #include "EntitySystem.h"
 #include "LayerSystem.h"
+
 #include "../utils/InternalConstants.h"
 
 class AssetSystem;
@@ -72,7 +76,7 @@ public:
 
     // AssetSystem Wrapper
     static void loadTextureAsset(std::string textureId, std::string texturePath);
-    static SDL_Texture* getTextureAsset(std::string textureId);
+    static std::shared_ptr<Texture2D> getTextureAsset(std::string textureId);
 
     static SDL_Renderer* getRenderer();
 };

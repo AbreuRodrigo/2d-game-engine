@@ -26,14 +26,14 @@ int Sprite::getHeight() const {
 };
 
 //---------------------------------------------------------------------------------------------------------------------
-SDL_Texture* Sprite::getTexture() const {
+std::shared_ptr<Texture2D> Sprite::getTexture() const {
     return texture;
 };
 
 //---------------------------------------------------------------------------------------------------------------------
 void Sprite::setTexture(const char* textureId) {
     texture = GameSystem::getTextureAsset(textureId);
-    SDL_QueryTexture(texture, &format, nullptr, &width, &height);
+    SDL_QueryTexture(texture->getTextureReference(), &format, nullptr, &width, &height);
 };
 
 //---------------------------------------------------------------------------------------------------------------------

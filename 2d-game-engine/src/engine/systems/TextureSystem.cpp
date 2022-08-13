@@ -1,24 +1,22 @@
+#include "TextureSystem.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include "GameSystem.h"
-#include "TextureSystem.h"
 
 //---------------------------------------------------------------------------------------------------------------------
-SDL_Texture* TextureSystem::loadTexture(const char* fileName) {
-    SDL_Surface* surface = IMG_Load(fileName);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(GameSystem::getRenderer(), surface);
-    SDL_FreeSurface(surface);
-
+std::shared_ptr<Texture2D> TextureSystem::loadTexture(const char* fileName) {
+    auto texture = std::make_shared<Texture2D>(fileName);
     return texture;
 };
 
 //---------------------------------------------------------------------------------------------------------------------
-void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect destinationRect) {
-    drawTexture(texture, sourceRect, destinationRect, SDL_RendererFlip::SDL_FLIP_NONE);
+void TextureSystem::drawTexture(std::shared_ptr<Texture2D> texture, SDL_Rect sourceRect, SDL_Rect targetRect) {
+    drawTexture(texture, sourceRect, targetRect, SDL_RendererFlip::SDL_FLIP_NONE);
 };
 
 //---------------------------------------------------------------------------------------------------------------------
-void TextureSystem::drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect destinationRect, SDL_RendererFlip flip) {
+void TextureSystem::drawTexture(std::shared_ptr<Texture2D> texture, SDL_Rect sourceRect, SDL_Rect targetRect, SDL_RendererFlip flip) {
     double rotation = 0;
-    SDL_RenderCopyEx(GameSystem::getRenderer(), texture, &sourceRect, &destinationRect, rotation, nullptr, flip);
+    SDL_RenderCopyEx(GameSystem::getRenderer(), texture->getTextureReference(), &sourceRect, &targetRect, rotation, nullptr, texture->getFlip());
 };

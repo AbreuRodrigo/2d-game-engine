@@ -25,7 +25,7 @@ void MyGame::onSetup() {
 
 //---------------------------------------------------------------------------------------------------------------------
 void MyGame::onLevelLoaded(int levelIndex) {
-    map = std::unique_ptr<Map>(new Map("JungleTileTexture", 2, 32));
+    map = std::make_unique<Map>("JungleTileTexture", 2, 32);
     map->loadMap("assets/tilemaps/jungle.map", 25, 20);// TODO change this once we have configs
 
     player = &GameSystem::createEntity<Chopper>("Chopper", LayerLabel::PLAYER);

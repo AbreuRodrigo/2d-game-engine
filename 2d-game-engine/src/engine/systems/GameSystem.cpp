@@ -12,9 +12,9 @@
 #include <SDL_image.h>
 
 //Static
-std::unique_ptr<AssetSystem> GameSystem::assetSystem(new AssetSystem());
-std::unique_ptr<EntitySystem> GameSystem::entitySystem(new EntitySystem());
-std::unique_ptr<LayerSystem> GameSystem::layerSystem(new LayerSystem());
+std::unique_ptr<AssetSystem> GameSystem::assetSystem = std::make_unique<AssetSystem>();
+std::unique_ptr<EntitySystem> GameSystem::entitySystem = std::make_unique<EntitySystem>();
+std::unique_ptr<LayerSystem> GameSystem::layerSystem = std::make_unique<LayerSystem>();
 
 SDL_Renderer* GameSystem::renderer;
 
@@ -39,7 +39,7 @@ void GameSystem::loadTextureAsset(std::string textureId, std::string texturePath
 };
 
 //---------------------------------------------------------------------------------------------------------------------
-SDL_Texture* GameSystem::getTextureAsset(std::string textureId) {
+std::shared_ptr<Texture2D> GameSystem::getTextureAsset(std::string textureId) {
     return assetSystem->getTexture(textureId);
 };
 

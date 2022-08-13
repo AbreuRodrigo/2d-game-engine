@@ -2,11 +2,9 @@
 
 #include <iostream>
 #include <SDL.h>
-#include <SDL_image.h>
 #include <string>
-#include "../systems/GameSystem.h"
 
-class Texture2D {
+struct Texture2D {
 protected:
     std::string filePath = "";
     SDL_Texture* textureReference = nullptr;

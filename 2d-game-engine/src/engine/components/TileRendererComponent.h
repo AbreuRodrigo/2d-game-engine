@@ -17,7 +17,7 @@ class GameSystem;
 class TileRendererComponent : public RendererComponent
 {
 protected:
-    SDL_Texture* texture;
+    std::shared_ptr<Texture2D> texture;
     int tileSize;
     int tileScale;
         
@@ -29,8 +29,7 @@ public:
 
     //-----------------------------------------------------------------------------------------------------------------
     TileRendererComponent(int sourceRectX, int sourceRectY, int tileSize, int tileScale, std::string textureId, const Color color) {
-        texture = GameSystem::getTextureAsset(textureId);
-
+        this->texture = GameSystem::getTextureAsset(textureId);
         this->color = color;
 
         sourceRect.x = sourceRectX;
@@ -44,7 +43,7 @@ public:
 
     //-----------------------------------------------------------------------------------------------------------------
     ~TileRendererComponent() {
-        SDL_DestroyTexture(texture);
+        SDL_DestroyTexture(texture->getTextureReference());
     };
 
     //-----------------------------------------------------------------------------------------------------------------

@@ -18,7 +18,7 @@ private:
 public:
     //-----------------------------------------------------------------------------------------------------------------
     SpriteRendererComponent(const char* spriteFileName, bool isStatic = false) {
-        this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, isStatic));
+        this->sprite = std::make_unique<Sprite>(spriteFileName, isStatic);
         //this->boundingBox.width = this->sprite->getWidth();
         //this->boundingBox.height = this->sprite->getHeight();
         this->sourceRect.w = this->sprite->getWidth();
@@ -28,7 +28,7 @@ public:
 
     //-----------------------------------------------------------------------------------------------------------------
     SpriteRendererComponent(const char* spriteFileName, int width, int height, bool isStatic = false) {
-        this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, width, height, isStatic));
+        this->sprite = std::make_unique<Sprite>(spriteFileName, width, height, isStatic);
         //this->boundingBox.width = this->sprite->getWidth();
         //this->boundingBox.height = this->sprite->getHeight();
         this->sourceRect.w = this->sprite->getWidth();
@@ -38,7 +38,7 @@ public:
 
     //-----------------------------------------------------------------------------------------------------------------
     SpriteRendererComponent(const char* spriteFileName, const Color color, bool isStatic = false) {
-        this->sprite = std::unique_ptr<Sprite>(new Sprite(spriteFileName, isStatic));
+        this->sprite = std::make_unique<Sprite>(spriteFileName, isStatic);
         //this->boundingBox.width = this->sprite->getWidth();
         //this->boundingBox.height = this->sprite->getHeight();
         this->sourceRect.w = this->sprite->getWidth();
@@ -70,6 +70,6 @@ public:
         rect.h = static_cast<int>(sprite->getHeight() * parent->transform->scale.y);
 
         //TextureSystem::drawTexture(sprite->getTexture(), sprite->getBoundingBox().getRect(), rect, sprite->flip);
-        TextureSystem::drawTexture(sprite->getTexture(), sprite->getBoundingBox(), rect, sprite->flip);
+        TextureSystem::drawTexture(sprite->getTexture(), sprite->getBoundingBox(), rect);
     };
 };

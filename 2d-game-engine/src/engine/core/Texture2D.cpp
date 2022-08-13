@@ -1,5 +1,8 @@
 #include "Texture2D.h"
 
+#include <SDL_image.h>
+#include "../systems/GameSystem.h"
+
 //---------------------------------------------------------------------------------------------------------------------
 std::string Texture2D::getFilePath() const {
     return this->filePath;

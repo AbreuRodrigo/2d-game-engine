@@ -6,10 +6,9 @@
 
 class GameSystem;
 
-class TextureSystem
-{
+class TextureSystem {
 public:
-    static SDL_Texture* loadTexture(const char* fileName);
-    static void drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect destinationRect);
-    static void drawTexture(SDL_Texture* texture, SDL_Rect sourceRect, SDL_Rect destinationRect, SDL_RendererFlip flip);
+    static std::shared_ptr<Texture2D> loadTexture(const char* fileName);
+    static void drawTexture(std::shared_ptr<Texture2D> texture, SDL_Rect sourceRect, SDL_Rect targetRect);
+    static void drawTexture(std::shared_ptr<Texture2D> texture, SDL_Rect sourceRect, SDL_Rect targetRect, SDL_RendererFlip flip);
 };
